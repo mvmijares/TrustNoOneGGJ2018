@@ -1,6 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using InControl;
 using UnityEngine;
+
+
+
+//ALIEN
+
 
 public class CaptureZone : MonoBehaviour {
 
@@ -19,16 +25,28 @@ public class CaptureZone : MonoBehaviour {
     public GameObject Ufo;
     UFOMovement ufoRefrence;
 
-	// Use this for initialization
+	
 	void Start () {
         PlayerCaptured = false;
 
         ufoRefrence = Ufo.GetComponent<UFOMovement>();
-	}
+        timeStamp = 0;
+    }
 	
-	// Update is called once per frame
+	
 	void Update () {
 
+
+
+        if (timeStamp <= Time.time)
+        {
+            //add input for controller<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<---------------------------------------------
+            if (Input.GetKey(KeyCode.A))
+            {
+                
+                timeStamp = Time.time + cooldownTime;
+            }
+        }
 
         if (PlayerCaptured)
         {
@@ -37,18 +55,22 @@ public class CaptureZone : MonoBehaviour {
 
             CapturePlayer.transform.position = holdingPoint.transform.position;
 
-                        
+                       
         }
+
+
+
 
 
     }
 
     void OnTriggerStay(Collider other)
     {
-        
-        //transform.Translate(Vector3.forward * Time.deltaTime);
 
-        if (other.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.A) && timeStamp<=Time.time)
+        
+
+       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>add input for controller
+        if (other.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.A) && timeStamp <=Time.time)
         {
 
             CapturePlayer = other.gameObject;
