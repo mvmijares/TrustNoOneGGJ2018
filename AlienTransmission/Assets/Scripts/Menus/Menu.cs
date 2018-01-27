@@ -75,7 +75,7 @@ public class Menu : MonoBehaviour {
         }
 
 
-        if (Ninput.DPadUp.WasReleased)
+        if (Ninput.DPadUp.WasReleased || Input.GetKeyUp(KeyCode.UpArrow)) 
         {
             print("working");
 
@@ -99,7 +99,7 @@ public class Menu : MonoBehaviour {
         }
 
 
-        if (Ninput.DPadDown.WasReleased)
+        if (Ninput.DPadDown.WasReleased || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (i == 0)
             {
