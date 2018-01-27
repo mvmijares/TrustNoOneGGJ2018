@@ -63,4 +63,10 @@ public class Flee : MonoBehaviour {
 
         return v;
     }
+
+    public bool isOutOfPanicZone(Vector3 targetPosition)
+    {
+        Vector3 acceleration = transform.position - targetPosition;
+        return acceleration.magnitude > panicDist && rb.velocity.magnitude <= 0.001f;
+    }
 }

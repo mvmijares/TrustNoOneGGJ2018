@@ -20,20 +20,11 @@ public class DebugWeirdThing : MonoBehaviour {
 		if (timer > 20 && !trigger1)
         {
             trigger1 = true;
-            for (int i = 0; i < dummyScript.Length; i++)
-            {
-                NPCMind npc = dummyScript[i].GetComponent<NPCMind>();
-                npc.setState(MINDSTATES.RUN);
-            }
-        }
-        else if (timer > 200 && !trigger2)
-        {
             trigger2 = true;
-            Debug.Log("PAAAAAAAANIC");
             for (int i = 0; i < dummyScript.Length; i++)
             {
                 NPCMind npc = dummyScript[i].GetComponent<NPCMind>();
-                npc.setState(MINDSTATES.PANIC);
+                npc.setState(MINDSTATES.WALK);
             }
         }
         else

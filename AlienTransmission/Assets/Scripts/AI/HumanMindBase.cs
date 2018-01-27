@@ -15,7 +15,8 @@ public enum MINDSTATES {
 public abstract class HumanMindBase : MonoBehaviour {
 
     protected MINDSTATES currentState;
-    protected float moveSpeed = 5f;
+    protected float walkSpeed = 5f;
+    protected float runSpeed = 10f;
 
     // Use this for initialization
     //Or is Awake better?

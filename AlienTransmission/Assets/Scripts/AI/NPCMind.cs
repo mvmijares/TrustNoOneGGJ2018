@@ -8,6 +8,8 @@ public class NPCMind : HumanMindBase {
     Wander2 wander;
     SteeringBasics steering;
     Flee flee;
+    NearSensor nearSensor;
+    CollisionAvoidance collision;
 
     public GameObject fleeFrom;
 
@@ -17,6 +19,17 @@ public class NPCMind : HumanMindBase {
         wander = GetComponent<Wander2>();
         steering = GetComponent<SteeringBasics>();
         flee = GetComponent<Flee>();
+        nearSensor = GetComponentInChildren<NearSensor>();
+        collision = GetComponent<CollisionAvoidance>();
+
+        initSpeedValues();
+    }
+
+    void initSpeedValues()
+    {
+        flee.maxAcceleration = runSpeed;
+        flee.panicDist = 40f;   //Might be different
+        steering.maxVelocity = walkSpeed;
     }
 
     private void Update()
@@ -24,19 +37,37 @@ public class NPCMind : HumanMindBase {
         if (isMoving)
         {
             Vector3 accel = Vector3.zero;
-            switch (currentState)
-            {
-                case MINDSTATES.RUN:
-                    accel = wander.getSteering();
-                    break;
-                case MINDSTATES.PANIC:
-                    if (fleeFrom != null && fleeFrom.activeInHierarchy) { 
-                        accel = flee.getSteering(fleeFrom.transform.position);
-                    }
-                    break;
 
+            if (nearSensor.targets.Count > 0)
+            {
+                accel = collision.getSteering(nearSensor.targets);
             }
 
+            if (accel.magnitude < 0.005f)
+            {
+                switch (currentState)
+                {
+                    case MINDSTATES.WALK:
+                        accel = wander.getSteering();
+                        break;
+                    case MINDSTATES.PANIC:
+                        if (fleeFrom != null && fleeFrom.activeInHierarchy)
+                        {
+                            Vector3 fleeTarget = fleeFrom.transform.position;
+                            if (flee.isOutOfPanicZone(fleeTarget))
+                            {
+                                //Out of flee zone going back to walk
+                                setState(MINDSTATES.WALK);
+                            }
+                            else
+                            {
+                                accel = flee.getSteering(fleeTarget);
+                            }
+                        }
+                        break;
+
+                }
+            }
             steering.steer(accel);
             steering.lookWhereYoureGoing();
         }
@@ -60,19 +91,21 @@ public class NPCMind : HumanMindBase {
     protected override void onWalk()
     {
         base.onWalk();
-        isMoving = true;
-    }
-
-    protected override void onRun()
-    {
-        base.onRun();
+        collision.maxAcceleration = walkSpeed;
         isMoving = true;
     }
 
     protected override void onPanic()
     {
         base.onPanic();
+        collision.maxAcceleration = runSpeed;
         isMoving = true;
+    }
+
+    protected override void onAbducted()
+    {
+        base.onAbducted();
+        isMoving = false;
     }
 
     protected override void onEnterState(MINDSTATES state)
@@ -81,9 +114,6 @@ public class NPCMind : HumanMindBase {
         {
             case MINDSTATES.WALK:
                 onWalk();
-                break;
-            case MINDSTATES.RUN:
-                onRun();
                 break;
             case MINDSTATES.PANIC:
                 onPanic();
@@ -120,7 +150,7 @@ public class NPCMind : HumanMindBase {
                 //stop idling
                 break;
             case MINDSTATES.ABDUCTED:
-                //I guess you'd be falling here.
+                //I guess you'd be falling here and dying
                 break;
             case MINDSTATES.DEAD:
                 Debug.Log("Exit Dead"); //Dead people should be killed

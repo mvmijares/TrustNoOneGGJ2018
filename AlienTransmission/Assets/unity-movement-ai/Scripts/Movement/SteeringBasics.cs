@@ -38,7 +38,7 @@ public class SteeringBasics : MonoBehaviour {
 	/* Updates the velocity of the current game object by the given linear acceleration */
 	public void steer(Vector3 linearAcceleration) {
 		rb.velocity += linearAcceleration * Time.deltaTime;
-		
+
 		if (rb.velocity.magnitude > maxVelocity) {
 			rb.velocity = rb.velocity.normalized * maxVelocity;
 		}
@@ -194,8 +194,8 @@ public class SteeringBasics : MonoBehaviour {
 
     public static float getBoundingRadius(Transform t)
     {
-        SphereCollider col = t.GetComponent<SphereCollider>();
-        return Mathf.Max(t.localScale.x, t.localScale.y, t.localScale.z) * col.radius;
+        BoxCollider col = t.GetComponent<BoxCollider>();
+        return Mathf.Max(t.localScale.x, t.localScale.y, t.localScale.z) * col.bounds.size.y/2;
     }
 
 }
