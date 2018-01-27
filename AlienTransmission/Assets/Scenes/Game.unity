@@ -386,6 +386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affd49a7ccd7cd3449d4812f99706b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AlienPlayerText: {fileID: 0}
+  PlayerOneText: {fileID: 0}
+  PlayerTwoText: {fileID: 0}
+  PlayerThreeText: {fileID: 0}
   alienCamera: {fileID: 614898700}
   playerOneCamera: {fileID: 1569949577}
   playerTwoCamera: {fileID: 1206380736}
@@ -633,8 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce756b6b5dd7c38458e8852ed6eace4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1805838565239888, guid: 996bd0f8069d85a47b47789644ffb943,
-    type: 2}
+  playerPrefab: {fileID: 100102, guid: cc92778e09ceae04f8c605c9044c33bb, type: 3}
   playerCameraPrefab: {fileID: 1481731378553122, guid: af039d230616ed14b9a9dd8d59c6fe73,
     type: 2}
 --- !u!1 &1569949577

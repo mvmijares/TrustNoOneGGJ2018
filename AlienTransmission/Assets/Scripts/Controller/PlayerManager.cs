@@ -6,9 +6,13 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerManager : MonoBehaviour {
 
-    List<HumanPlayer> players;
+    public List<HumanPlayer> players;
+
+    List<InputDevice> inputDevices;
+
     List<Transform> playerPositions;
-    const int maxPlayers = 4;
+    const int maxPlayers = 3;
+    [SerializeField]
     int playerIndex;
     public GameObject playerPrefab;
     public GameObject playerCameraPrefab;
@@ -30,6 +34,7 @@ public class PlayerManager : MonoBehaviour {
     void Start() {
         InputManager.OnDeviceDetached += OnDeviceDetached; // Add a listener for when device is detached during gameplay
         players = new List<HumanPlayer>();
+        inputDevices = new List<InputDevice>();
         playerIndex = 0;
         currTimer = 0.0f;
         maxStartTime = 3.0f;
@@ -45,12 +50,12 @@ public class PlayerManager : MonoBehaviour {
         if (gameManager.currentScene == "SetupControllers") {
             InputDevice activeInputDevice = InputManager.ActiveDevice; // active device
             if (activeInputDevice.Action1) {
-                if (!FindPlayerWithDevice(activeInputDevice)) {
+                if (FindPlayerWithDevice(activeInputDevice) == null) {
                     //Test if statement. Will change once I get 4 controllers
-                    if (playerIndex <= 2) {
-                        CreateNewPlayer(activeInputDevice);
+                    if (playerIndex < 3) {
+                        SetupNewPlayer(activeInputDevice);
                     }
-                    if (playerIndex >= 2) {
+                    if (playerIndex >= 3) {
                         maxPlayersReached = true;
                     }
                 }
@@ -62,39 +67,43 @@ public class PlayerManager : MonoBehaviour {
                     gameManager.SwitchToScene("Game");
                     maxPlayersReached = false;
                     currTimer = 0.0f;
+                    playerIndex = 0;
                 }
             }
         }
+        if(gameManager.currentScene == "Game") {
+            CreatePlayers();
+        }
     }
-    HumanPlayer FindPlayerWithDevice(InputDevice inputDevice) {
-        int playerCount = players.Count;
-        for (int i = 0; i < playerCount; i++) {
-            HumanPlayer player = players[i];
-            if (player.inputDevice == inputDevice) {
-                return player;
+    InputDevice FindPlayerWithDevice(InputDevice searchDevice) {
+        int inputDeviceCount = inputDevices.Count;
+        for (int i = 0; i < inputDeviceCount; i++) {
+            InputDevice inputDevice = inputDevices[i];
+            if (inputDevice == searchDevice) {
+                return inputDevice;
             }
         }
         return null;
     }
-    void CreateNewPlayer(InputDevice inputDevice) {
+    void SetupNewPlayer(InputDevice inputDevice) {
         if (players.Count < maxPlayers) {
+            inputDevices.Add(inputDevice);
+            Debug.Log("Called");
+            gameManager.sceneManager.SetPlayerTextActive(playerIndex);
+            playerIndex++;
+        }
+    }
+    public void CreatePlayers() {
+        foreach(HumanPlayer player in players) {
+            CreateNewPlayer(player);
+        }
+    }
+    void CreateNewPlayer(HumanPlayer player) {
             if (playerPrefab) {
                 //Setting up player
                 GameObject newPlayerObject = Instantiate(playerPrefab, new Vector3(0, 0.5f, 0), playerPrefab.transform.rotation);
-                HumanPlayer playerComponent = newPlayerObject.GetComponent<HumanPlayer>();
-                playerComponent.inputDevice = inputDevice;
-
-                PlayerAssignment(playerComponent);
-                gameManager.sceneManager.SetPlayerTextActive(playerIndex);
                 playerIndex++;
-                players.Add(playerComponent);
-                //Instantiate a new player object
-            }
         }
-    }
-
-    void PlayerAssignment(HumanPlayer player) {
-        player.playerIndex = playerIndex;
     }
     void OnDeviceDetached(InputDevice inputDevice) {
         var playerCount = players.Count;
