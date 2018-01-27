@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
+public enum Identity {
+    Alien, Player, NPC
+}
 public class HumanPlayer : MonoBehaviour {
 
 
     public InputDevice inputDevice { get; set; } //individual device set up in the player manager;
+    public Identity playerIdentity { get; set; }
+    
 
     float leftHorizontal; // left stick, horizontal axis
     float leftVertical; // left stick, vertical axis
