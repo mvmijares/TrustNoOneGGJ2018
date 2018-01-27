@@ -21,8 +21,8 @@ public class PlayerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        InputDevice activeInputDevice = InputManager.ActiveDevice; // active desi
-        if (activeInputDevice.Action1) {
+        InputDevice activeInputDevice = InputManager.ActiveDevice; // active device
+        if (activeInputDevice.DPadUp) {
             if (!FindPlayerWithDevice(activeInputDevice)) {
                 CreateNewPlayer(activeInputDevice);
             }

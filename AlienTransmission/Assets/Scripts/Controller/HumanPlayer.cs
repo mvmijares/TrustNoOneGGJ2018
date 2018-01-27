@@ -20,7 +20,6 @@ public class HumanPlayer : MonoBehaviour {
         if (inputDevice != null) {
             leftHorizontal = inputDevice.LeftStickX.Value;
             leftVertical = inputDevice.LeftStickY.Value;
-            //Debug.Log(leftHorizontal + " " + leftVertical);
         }
 
     }
