@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - DropOff
+  - PlayerManager
+  - GameManager
+  - SceneManager
   layers:
   - Default
   - TransparentFX
