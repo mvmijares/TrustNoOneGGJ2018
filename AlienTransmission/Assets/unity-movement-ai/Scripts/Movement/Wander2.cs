@@ -20,7 +20,7 @@ public class Wander2 : MonoBehaviour {
         float theta = Random.value * 2 * Mathf.PI;
 
         //create a vector to a target position on the wander circle
-        wanderTarget = new Vector3(wanderRadius * Mathf.Cos(theta), wanderRadius * Mathf.Sin(theta), 0f);
+        wanderTarget = new Vector3(wanderRadius * Mathf.Cos(theta), 0f, wanderRadius * Mathf.Sin(theta));
 
         steeringBasics = GetComponent<SteeringBasics>();
     }
@@ -31,7 +31,7 @@ public class Wander2 : MonoBehaviour {
         float jitter = wanderJitter * Time.deltaTime;
 
         //add a small random vector to the target's position
-        wanderTarget += new Vector3(Random.Range(-1f, 1f) * jitter, Random.Range(-1f, 1f) * jitter, Random.Range(-1f, 1f) * jitter);
+        wanderTarget += new Vector3(Random.Range(-1f, 1f) * jitter, 0f, Random.Range(-1f, 1f) * jitter);
 
         //make the wanderTarget fit on the wander circle again
         wanderTarget.Normalize();
@@ -39,6 +39,7 @@ public class Wander2 : MonoBehaviour {
 
         //move the target in front of the character
         Vector3 targetPosition = transform.position + transform.forward * wanderDistance + wanderTarget;
+
         //Debug.DrawLine(transform.position, targetPosition);
 
         return steeringBasics.seek(targetPosition);

@@ -5,40 +5,56 @@ using UnityEngine;
 public class NPCMind : HumanMindBase {
 
     bool isMoving = false;
-    Vector3 gotoLocation;
-    float maxTravelDistance = 10;
+    Wander2 wander;
+    SteeringBasics steering;
+    Flee flee;
+
+    public GameObject fleeFrom;
 
     protected override void Start()
     {
         base.Start();
-        gotoLocation = gameObject.transform.position;
+        wander = GetComponent<Wander2>();
+        steering = GetComponent<SteeringBasics>();
+        flee = GetComponent<Flee>();
     }
 
     private void Update()
     {
         if (isMoving)
         {
-            Vector3 currentPosition = gameObject.transform.position;
-            RaycastHit hit;
-            Ray ray = new Ray(currentPosition, transform.forward);
-            bool rayResults = Physics.Raycast(ray, out hit, moveSpeed * Time.deltaTime);
-            while (rayResults || Vector3.Distance(gotoLocation, currentPosition) < 0.05)
+            Vector3 accel = Vector3.zero;
+            switch (currentState)
             {
-                seekNewNode();
+                case MINDSTATES.RUN:
+                    accel = wander.getSteering();
+                    break;
+                case MINDSTATES.PANIC:
+                    if (fleeFrom != null && fleeFrom.activeInHierarchy) { 
+                        accel = flee.getSteering(fleeFrom.transform.position);
+                    }
+                    break;
+
             }
 
-            //transform.position = Vector3.Slerp(currentPosition, gotoLocation, Time.deltaTime);
-            transform.LookAt(gotoLocation);
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime);
+            steering.steer(accel);
+            steering.lookWhereYoureGoing();
         }
+
+        //stayStanding();
     }
 
-    void seekNewNode()
+    protected void stayStanding()
     {
-        Vector2 randomCircle = Random.insideUnitCircle;
+        //Collisions end up tipping it over
+        Vector3 stayDown = transform.position;
+        stayDown.y = 0;
+        transform.position = stayDown;
 
-        gotoLocation = new Vector3(randomCircle.x, 0, randomCircle.y) * maxTravelDistance;
-        Debug.Log("new Node " + gotoLocation);
+        Vector3 stayUpright = transform.rotation.eulerAngles;
+        stayUpright.x = 0;
+        stayUpright.z = 0;
+        transform.rotation = Quaternion.Euler(stayUpright);
     }
 
     protected override void onWalk()
@@ -111,4 +127,46 @@ public class NPCMind : HumanMindBase {
                 break;
         }
     }
+
+
+
+
+    //Old scatter algorithm
+    /*
+    Vector3 gotoLocation;
+    public float maxTravelDistance = 10;
+    public float jitter = 40;
+
+    private void Start()
+    {
+        gotoLocation = gameObject.transform.position;
+    }
+
+    private void Update()
+    {
+        Vector3 currentPosition = gameObject.transform.position;
+        if (Vector3.Distance(gotoLocation, currentPosition) < 0.05)
+        {
+            seekNewNode();
+        }
+        transform.LookAt(gotoLocation);
+        transform.Translate(transform.forward * moveSpeed * Time.deltaTime);
+    }
+
+    //Using collision instead
+    private void OnCollisionEnter(Collision collision)
+    {
+        gotoLocation = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
+    }
+
+    void seekNewNode()
+    {
+        Vector2 randomCircle = Random.insideUnitCircle;
+        float wanderJitter = jitter * Time.deltaTime;
+
+        gotoLocation = new Vector3(randomCircle.x, 0, randomCircle.y) * maxTravelDistance;
+
+        Debug.Log("new Node " + gotoLocation);
+    }
+    */
 }

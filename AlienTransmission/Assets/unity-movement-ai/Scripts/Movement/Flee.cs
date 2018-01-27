@@ -43,7 +43,7 @@ public class Flee : MonoBehaviour {
             }
             else
             {
-                rb.velocity = Vector2.zero;
+                rb.velocity = Vector3.zero;
                 return Vector3.zero;
             }
         }
@@ -53,8 +53,8 @@ public class Flee : MonoBehaviour {
 
     private Vector3 giveMaxAccel(Vector3 v)
     {
-        //Remove the z coordinate
-        v.z = 0;
+        //Remove the y coordinate
+        v.y = 0;
 
         v.Normalize();
 

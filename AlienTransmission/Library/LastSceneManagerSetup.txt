@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/ExampleScene.unity
+- path: Assets/AIMovementTest.unity
   isLoaded: 1
   isActive: 1

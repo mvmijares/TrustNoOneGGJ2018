@@ -17,9 +17,9 @@ public abstract class HumanMindBase : MonoBehaviour {
     protected MINDSTATES currentState;
     protected float moveSpeed = 5f;
 
-	// Use this for initialization
+    // Use this for initialization
     //Or is Awake better?
-	protected virtual void Start () {
+    protected virtual void Start () {
 		currentState = MINDSTATES.IDLE;
 	}
 
