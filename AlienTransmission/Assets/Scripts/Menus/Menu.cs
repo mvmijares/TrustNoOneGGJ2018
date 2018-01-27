@@ -75,7 +75,7 @@ public class Menu : MonoBehaviour {
         }
 
 
-        if (Ninput.DPadUp)
+        if (Ninput.DPadUp.WasReleased)
         {
             print("working");
 
@@ -99,7 +99,7 @@ public class Menu : MonoBehaviour {
         }
 
 
-        if (Ninput.DPadDown)
+        if (Ninput.DPadDown.WasReleased)
         {
             if (i == 0)
             {

@@ -11,11 +11,12 @@ public class HumanPlayer : MonoBehaviour {
 
     public InputDevice inputDevice { get; set; } //individual device set up in the player manager;
     public Identity playerIdentity { get; set; }
-    
 
+    public int playerIndex; //player number
     float leftHorizontal; // left stick, horizontal axis
     float leftVertical; // left stick, vertical axis
-
+    
+    
     void Start () {
 	
 	}
