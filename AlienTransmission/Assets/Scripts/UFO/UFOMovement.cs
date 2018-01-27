@@ -7,26 +7,64 @@ public class UFOMovement : MonoBehaviour {
 
     public float playerSpeed;
     public float turnSpeed;
+    public GameObject Beam;
+    public float cooldownTime;
+    private float timeStamp;
+
+    public GameObject CaptureZoneRef;
+
+    CaptureZone cz;
+
+    public float speed;
+
+    bool playerCap;
+
+    
+
+    // Use this for initialization
+    void Start () {
 
 
+        cz = CaptureZoneRef.GetComponent<CaptureZone>();
 
-
-	// Use this for initialization
-	void Start () {
-		
+        Beam.SetActive(false);
+        timeStamp = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-
-
+        
         MoveForward();
         Turn();
+        MoveBack();
 
+        playerCap = cz.PlayerCaptured;
+
+        print(playerCap);
+
+        if (timeStamp <= Time.time)
+        {
+
+            if (Input.GetKey(KeyCode.A) && playerCap==false)
+            {
+                CastBeam();
+                timeStamp = Time.time + cooldownTime;
+            }
+        }
+
+        if (Time.time >= timeStamp-2 && playerCap == false)
+        {
+            Beam.SetActive(false);
+        }
 
 	}
 
+    
+    void CastBeam()
+    {
+        Beam.SetActive(true);
+    }
 
 
     void MoveForward()
@@ -34,6 +72,14 @@ public class UFOMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(0, playerSpeed * Time.deltaTime, 0);
+        }
+    }
+
+    void MoveBack()
+    {
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(0, -playerSpeed * Time.deltaTime, 0);
         }
     }
 
@@ -50,7 +96,9 @@ public class UFOMovement : MonoBehaviour {
         }
     }
 
+    
 
 
-  
+
+
 }
