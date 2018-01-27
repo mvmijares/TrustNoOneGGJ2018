@@ -85,8 +85,7 @@ public class SceneBehaviour : MonoBehaviour {
     public void SetPlayerTextActive(int playerIndex) {
 
 
-          
-        
+              
         switch (playerIndex + 1) {
             case 1: {
                     AlienPlayerText.SetActive(false);

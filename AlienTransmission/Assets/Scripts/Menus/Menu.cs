@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using InControl;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Menu : MonoBehaviour {
@@ -51,6 +52,10 @@ public class Menu : MonoBehaviour {
             Controls.sprite = ControlsNoHighlight;
             Exit.sprite = ExitNoHighlight;
             Credits.sprite = CreditsNotHighlight;
+            if (Ninput.Action1.WasReleased || Input.GetKey(KeyCode.A))
+            {
+                SceneManager.LoadScene("SetupControllers");
+            }
         }
         else if (i == 0)
         {
@@ -58,6 +63,11 @@ public class Menu : MonoBehaviour {
             Play.sprite = PlayNotHighlight;
             Exit.sprite = ExitNoHighlight;
             Credits.sprite = CreditsNotHighlight;
+
+            if (Ninput.Action1.WasReleased || Input.GetKey(KeyCode.A))
+            {
+                SceneManager.LoadScene("Controls");
+            }
         }
         else if (i == -2)
         {
@@ -65,6 +75,11 @@ public class Menu : MonoBehaviour {
             Controls.sprite = ControlsNoHighlight;
             Play.sprite = PlayNotHighlight;
             Credits.sprite = CreditsNotHighlight;
+
+            if (Ninput.Action1.WasReleased || Input.GetKey(KeyCode.A))
+            {
+
+            }
         }
         else if (i == -1)
         {
@@ -72,6 +87,11 @@ public class Menu : MonoBehaviour {
             Exit.sprite = ExitNoHighlight;
             Controls.sprite = ControlsNoHighlight;
             Play.sprite = PlayNotHighlight;
+
+            if (Ninput.Action1.WasReleased || Input.GetKey(KeyCode.A))
+            {
+                SceneManager.LoadScene("Credits");
+            }
         }
 
 
