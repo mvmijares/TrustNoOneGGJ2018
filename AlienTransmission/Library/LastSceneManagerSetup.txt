@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/AIMovementTest.unity
+- path: Assets/Scenes/ufoScene.unity
   isLoaded: 1
   isActive: 1
