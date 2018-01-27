@@ -9,10 +9,21 @@ public class GameBehaviour : MonoBehaviour {
     public SceneBehaviour sceneManager;
     [SerializeField]
     GameObject sceneObject;
+
+    public static GameBehaviour gameManager = null;
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public string currentScene;
+
+    private void Awake() {
+        if (!gameManager) {
+            gameManager = this;
+            DontDestroyOnLoad(this.gameObject);
+        } else {
+            Destroy(this.gameObject);
+        }
+    }
     // Use this for initialization
     void Start () {
 		
@@ -31,7 +42,6 @@ public class GameBehaviour : MonoBehaviour {
         sceneObject = GameObject.FindGameObjectWithTag("SceneManager");
         if(sceneObject)
             sceneManager = sceneObject.GetComponent<SceneBehaviour>();
-       
         switch (scene.name) {
             case "SetupControllers": {
                     if (!playerManager) {
@@ -40,7 +50,8 @@ public class GameBehaviour : MonoBehaviour {
                     break;
                 }
             case "Game": {
-
+                    playerManager.CreatePlayers();
+                    CameraAssignment();
                     break;
                 }
         }
@@ -50,7 +61,11 @@ public class GameBehaviour : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
     void CameraAssignment() {
-
+        Debug.Log("Camera Assignment was called");
+        if (sceneManager) {
+            foreach (HumanPlayer player in playerManager.players)
+                sceneManager.CameraAssignment(player);
+        }
     }
     private void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;
