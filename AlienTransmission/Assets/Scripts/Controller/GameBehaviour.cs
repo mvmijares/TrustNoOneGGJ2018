@@ -87,7 +87,7 @@ public class GameBehaviour : MonoBehaviour {
                     break;
                 }
         }
-    }
+    }   
 
     public void SwitchToScene(string sceneName) {
         SceneManager.LoadScene(sceneName);

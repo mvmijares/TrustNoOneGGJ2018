@@ -56,11 +56,12 @@ public class CaptureZone : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (player.buttonA && capAttack == true && !PlayerCaptured) {
+        if (player.buttonA && capAttack == true && !PlayerCaptured && CapturePlayer == null) {
             Collider[] colliders = Physics.OverlapSphere(transform.position, 3.0f);
             foreach(Collider col in colliders) {
                 if(col.gameObject.layer == LayerMask.NameToLayer("Player")) {
                     CapturePlayer = col.gameObject;
+                    col.gameObject.GetComponent<PlayerStateController>().setState(MINDSTATES.ABDUCTED);
                     PlayerCaptured = true;
                 }
             }
@@ -70,8 +71,11 @@ public class CaptureZone : MonoBehaviour {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, 3.0f);
                 foreach (Collider col in colliders) {
                     if (col.gameObject.layer == LayerMask.NameToLayer("Capture")) {
+                        CapturePlayer.GetComponent<HumanPlayer>().isCaptured = true;
                         CapturePlayer.transform.position = CapturePoint.transform.position;
+                        CapturePlayer = null;
                         PlayerCaptured = false;
+              
                     }
                 }
                

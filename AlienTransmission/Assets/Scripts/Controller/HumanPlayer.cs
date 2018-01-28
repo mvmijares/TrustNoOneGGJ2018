@@ -26,18 +26,22 @@ public class HumanPlayer : MonoBehaviour {
     public Camera cam;
 
     public float speed = 5f;
+
+    public bool isCaptured;
     
     void Start() {
         rb = GetComponent<Rigidbody>();
+        isCaptured = false;
     }
 
     // Update is called once per frame
     void Update () {
         if (!debugMode) {
             if (inputDevice != null) {
-                leftHorizontal = inputDevice.LeftStickX.Value;
-                leftVertical = inputDevice.LeftStickY.Value;
-
+                if (!isCaptured) { 
+                    leftHorizontal = inputDevice.LeftStickX.Value;
+                    leftVertical = inputDevice.LeftStickY.Value;
+                }
                 rightHorizontal = inputDevice.RightStickX.Value;
                 rightVertical = inputDevice.RightStickY.Value;
 
