@@ -7,7 +7,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerManager : MonoBehaviour {
 
     public List<HumanPlayer> players;
-    //public GameObject ufoPrefab;
+    
     [SerializeField]
     List<InputDevice> inputDevices;
 
@@ -18,13 +18,15 @@ public class PlayerManager : MonoBehaviour {
     [SerializeField]
     int playerIndex;
     public GameObject playerPrefab;
-    public GameObject playerCameraPrefab;
+    public GameObject ufoPrefab;
 
     bool maxPlayersReached = false;
     float maxStartTime; // pause time before game scene transition.
     float currTimer; // current time before game scene transition.
     public static PlayerManager playerManager = null;
     public static GameBehaviour gameManager = null;
+
+    
     private void Awake() {
         //Create a static instance of player Manager
         if (!playerManager) {
@@ -115,12 +117,11 @@ public class PlayerManager : MonoBehaviour {
             //Setting up player
             if (playerIndex < 1) {
                 //Instantiate UF0
-
-                //Assign it a Human Player Component
-
-                //Add input device to it
-
-                //Add Camera to it
+                GameObject ufoPlayer = GameObject.FindGameObjectWithTag("UFOPlayer");
+                if (ufoPlayer) {
+                    HumanPlayer playerComponent = ufoPlayer.GetComponent<HumanPlayer>();
+                    playerComponent.inputDevice = device;
+                }
             } else if(playerIndex < 4) {
                 GameObject newPlayerObject = Instantiate(playerPrefab, playerPositions[playerIndex - 1], playerPrefab.transform.rotation);
                 HumanPlayer playerComponent = newPlayerObject.GetComponent<HumanPlayer>();
