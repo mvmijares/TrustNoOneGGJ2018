@@ -20,6 +20,7 @@ public class HumanPlayer : MonoBehaviour {
     public float rightHorizontal;// left stick, horizontal axis
     public float rightVertical;// left stick, vertical axis
 
+    public bool buttonA;
     public bool sprint;
     public bool debugMode;
     public Camera cam;
@@ -41,6 +42,8 @@ public class HumanPlayer : MonoBehaviour {
                 rightVertical = inputDevice.RightStickY.Value;
 
                 sprint = inputDevice.RightTrigger.IsPressed;
+
+                buttonA = inputDevice.Action1.IsPressed;
             }
         } else {
             leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;
