@@ -6,7 +6,7 @@ using InControl;
 public enum Identity {
     Alien, Player, NPC
 }
-public class HumanPlayer : HumanMindBase {
+public class HumanPlayer : MonoBehaviour {
 
     Rigidbody rb;
     public InputDevice inputDevice { get; set; } //individual device set up in the player manager;
@@ -26,19 +26,8 @@ public class HumanPlayer : HumanMindBase {
 
     public float speed = 5f;
     
-    protected override void Start() {
-        base.Start();
-
+    void Start() {
         rb = GetComponent<Rigidbody>();
-    }
-
-
-    protected override void onEnterState(MINDSTATES state) {
-
-    }
-
-    protected override void onExitState(MINDSTATES state) {
-
     }
 
     // Update is called once per frame

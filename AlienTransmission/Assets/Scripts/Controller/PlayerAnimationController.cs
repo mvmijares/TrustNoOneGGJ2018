@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Not used
 public class PlayerAnimationController : MonoBehaviour {
 
     HumanPlayer player;
