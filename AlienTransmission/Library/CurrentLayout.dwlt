@@ -91,7 +91,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 49
+  controlID: 69
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 50
+  controlID: 70
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 228
     height: 957
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -351,9 +351,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3eb8ffff
-    m_LastClickedID: -18370
-    m_ExpandedIDs: b8bafffff2bfffff00000000
+    m_SelectedIDs: 28f9ffff
+    m_LastClickedID: -1752
+    m_ExpandedIDs: 9afbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -461,7 +461,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 26380000
     m_LastClickedID: 14374
-    m_ExpandedIDs: 00000000263800008a3800008e380000983900009a390000323a00004a3a0000c43a0000063b0000a63c000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000702b0000f02b0000f42b00000e2d0000262e0000402e0000ce2e0000142f0000de2f00007c3000002e31000066310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -489,7 +489,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000263800008a3800008e38000098390000323a00004a3a0000c43a0000063b0000be3b0000dc3b0000743c0000a63c0000
+    m_ExpandedIDs: 00000000702b0000f02b0000f42b00000e2d0000262e0000402e0000ce2e0000142f0000de2f00007c3000002e31000066310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -697,4 +697,4 @@ MonoBehaviour:
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_LastLockedObject: {fileID: 0}
-  m_ViewIsLockedToObject: 1
+  m_ViewIsLockedToObject: 0
