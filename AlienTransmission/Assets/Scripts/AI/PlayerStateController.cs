@@ -11,7 +11,6 @@ using UnityEngine;
 public class PlayerStateController : HumanMindBase {
 
     HumanPlayer player;
-    Animator anim;
 
     float speed = 0f;
 
@@ -44,6 +43,11 @@ public class PlayerStateController : HumanMindBase {
             else
             {
                 setState(MINDSTATES.WALK);
+            }
+            if (yVal > 0.1f || yVal < -0.1f) {
+                speed = 2f;
+            } else {
+                speed = 0f;
             }
         }
 
