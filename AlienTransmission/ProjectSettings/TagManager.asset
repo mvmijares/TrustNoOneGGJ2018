@@ -8,6 +8,8 @@ TagManager:
   - PlayerManager
   - GameManager
   - SceneManager
+  - Generator
+  - NPC
   layers:
   - Default
   - TransparentFX
