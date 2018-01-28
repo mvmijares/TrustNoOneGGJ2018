@@ -66,12 +66,12 @@ GameObject:
   - component: {fileID: 4765443352012038}
   - component: {fileID: 95280888535670720}
   - component: {fileID: 54192527913082786}
-  - component: {fileID: 114951823877866246}
   - component: {fileID: 136289620611932596}
   - component: {fileID: 114905144901923106}
   - component: {fileID: 114499891452139876}
   - component: {fileID: 114865627854097902}
   - component: {fileID: 114359002932338218}
+  - component: {fileID: 114478713265399724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1642,12 +1642,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bee891136bb7344eaf173167cfcef8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
   walkSpeed: 0.15
   runSpeed: 1
   sprintSpeed: 50
   speedDampTime: 0.1
   maxSpeed: 50
+--- !u!114 &114478713265399724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1026755652981984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482a90266288103409cda45719adccdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114499891452139876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1679,7 +1689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7805b37c9b81404099bc654610b012d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
   turnSmoothing: 0.06
   sprintFOV: 100
   sprintButton: Sprint
@@ -1694,19 +1703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482a90266288103409cda45719adccdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114951823877866246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026755652981984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de36132dc41474c4d8a03280f85e7c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abducted: 0
-  isfalling: 0
 --- !u!136 &136289620611932596
 CapsuleCollider:
   m_ObjectHideFlags: 1

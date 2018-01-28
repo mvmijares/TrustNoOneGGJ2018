@@ -10,21 +10,62 @@ using UnityEngine;
  */
 public class PlayerStateController : HumanMindBase {
 
-	// Use this for initialization
-	void Start () {
+    HumanPlayer player;
+    Animator anim;
+
+    float speed = 0f;
+
+    float xVal;
+    float yVal;
+
+    // Use this for initialization
+    protected override void Start()
+    {
         base.Start();
-	}
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        player = GetComponent<HumanPlayer>();
+    }
+
+    private void Update()
+    {
+        if (currentState != MINDSTATES.ABDUCTED || currentState != MINDSTATES.FALLING)
+        {
+            xVal = player.leftHorizontal;
+            yVal = player.leftVertical;
+
+            if (player.sprint)
+            {
+                setState(MINDSTATES.RUN);
+            }
+            else
+            {
+                setState(MINDSTATES.WALK);
+            }
+        }
+
+        anim.SetFloat("Speed", speed);
+    }
 
     void onTransmission()
     {
         //Play the animation
         //The collider will do the timer stuff in GeneratorSingle.cs
+        anim.SetBool("isTransmitting", true);
     }
 
     protected override void onAbducted()
     {
         base.onAbducted();  //Play abduct animation
         //Lock the player movement somehow and stuff
+    }
+
+    protected override void onFalling()
+    {
+        base.onFalling();
     }
 
     protected override void onEnterState(MINDSTATES state)
@@ -48,6 +89,9 @@ public class PlayerStateController : HumanMindBase {
                 break;
             case MINDSTATES.DEAD:
                 //kill thyself
+                break;
+            case MINDSTATES.FALLING:
+                onFalling();
                 break;
         }
     }
@@ -76,6 +120,9 @@ public class PlayerStateController : HumanMindBase {
                 break;
             case MINDSTATES.DEAD:
                 Debug.Log("Exit Dead"); //Dead people should be killed
+                break;
+            case MINDSTATES.FALLING:
+                //something
                 break;
         }
     }
