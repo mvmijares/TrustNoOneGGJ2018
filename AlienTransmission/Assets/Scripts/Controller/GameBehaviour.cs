@@ -63,8 +63,8 @@ public class GameBehaviour : MonoBehaviour {
     void CameraAssignment() {
         Debug.Log("Camera Assignment was called");
         if (sceneManager) {
-            foreach (HumanPlayer player in playerManager.players)
-                sceneManager.CameraAssignment(player);
+            //foreach (HumanPlayer player in playerManager.players)
+            //    //sceneManager.CameraAssignment(player);
         }
     }
     private void OnDisable() {

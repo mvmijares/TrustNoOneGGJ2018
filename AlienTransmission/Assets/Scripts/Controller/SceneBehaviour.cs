@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class SceneBehaviour : MonoBehaviour {
 
     public GameObject AlienPlayerText;
@@ -47,36 +48,36 @@ public class SceneBehaviour : MonoBehaviour {
 		
 	}
     //Assigns players to cameras
-    public void CameraAssignment(HumanPlayer player) {
-        UnityStandardAssets.Cameras.ThirdPersonCamera cameraComponent;
-        switch (player.playerIndex) {
-            case 1: {
-                    cameraComponent = alienCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-                    SetTargetPlayer(cameraComponent, player.transform);
-                    break;
-                }
-            case 2: {
-                    cameraComponent = playerOneCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-                    SetTargetPlayer(cameraComponent, player.transform);
-                    break;
-                }
-            case 3: {
-                    cameraComponent = playerTwoCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-                    SetTargetPlayer(cameraComponent, player.transform);
-                    break;
-                }
-            case 4: {
-                    cameraComponent = playerThreeCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-                    SetTargetPlayer(cameraComponent, player.transform);
-                    break;
-                }
-        }
+    //public void CameraAssignment(HumanPlayer player) {
+    //    UnityStandardAssets.Cameras.ThirdPersonCamera cameraComponent;
+    //    switch (player.playerIndex) {
+    //        case 1: {
+    //                cameraComponent = alienCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
+    //                SetTargetPlayer(cameraComponent, player.transform);
+    //                break;
+    //            }
+    //        case 2: {
+    //                cameraComponent = playerOneCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
+    //                SetTargetPlayer(cameraComponent, player.transform);
+    //                break;
+    //            }
+    //        case 3: {
+    //                cameraComponent = playerTwoCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
+    //                SetTargetPlayer(cameraComponent, player.transform);
+    //                break;
+    //            }
+    //        case 4: {
+    //                cameraComponent = playerThreeCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
+    //                SetTargetPlayer(cameraComponent, player.transform);
+    //                break;
+    //            }
+    //    }
      
-    }
+    //}
 
-    void SetTargetPlayer(UnityStandardAssets.Cameras.ThirdPersonCamera cameraComponent, Transform playerObject) {
-        cameraComponent.SetTarget(playerObject);
-    }
+    //void SetTargetPlayer(Camera cam, Transform playerObject) {
+    //    cameraComponent.SetTarget(playerObject);
+    //}
 
     /// <summary>
     /// Sets the text active to when the player joins
