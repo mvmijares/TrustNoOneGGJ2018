@@ -16,8 +16,8 @@ public enum MINDSTATES {
 public abstract class HumanMindBase : MonoBehaviour {
 
     public MINDSTATES currentState { get; protected set; }
-    protected float walkSpeed = 5f;
-    protected float runSpeed = 10f;
+    protected float walkSpeed = 2.5f;
+    protected float runSpeed = 5f;
     protected float currentSpeed = 0f;
 
     protected Animator anim;

@@ -74,7 +74,6 @@ public class NPCMind : HumanMindBase {
             steering.lookWhereYoureGoing();
         }
 
-        Debug.Log(rigidBody.velocity.magnitude);
         if (rigidBody.velocity.magnitude > 0.5f)
         {
             currentSpeed = 2f;

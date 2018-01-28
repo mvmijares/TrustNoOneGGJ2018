@@ -199,11 +199,6 @@ Prefab:
       propertyPath: fleeFrom
       value: 
       objectReference: {fileID: 1671869090}
-    - target: {fileID: 137147486506531854, guid: 60e75a9f66e38e040b957b7ed02cdf5c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: ecdfb4b7759e2d648bc140e822b113ca, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60e75a9f66e38e040b957b7ed02cdf5c, type: 2}
   m_IsPrefabParent: 0
