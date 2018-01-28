@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 1038829035}
   - component: {fileID: 1038829034}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

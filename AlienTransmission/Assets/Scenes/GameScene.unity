@@ -883,6 +883,53 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251087335}
   m_Mesh: {fileID: 4300032, guid: 38fa97c66e15b524388bace5f2ccce4f, type: 3}
+--- !u!1001 &293739059
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 559312539}
+    m_Modifications:
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+      propertyPath: m_RootOrder
+      value: 63
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 493ee7ac53e80eb48a8f55cb16462653, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &293739060 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4669667683957144, guid: 493ee7ac53e80eb48a8f55cb16462653,
+    type: 2}
+  m_PrefabInternal: {fileID: 293739059}
 --- !u!1 &307796485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,6 +1909,7 @@ Transform:
   - {fileID: 498629069}
   - {fileID: 1947136467}
   - {fileID: 1245932887}
+  - {fileID: 293739060}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6235,6 +6283,7 @@ MonoBehaviour:
   debugMode: 0
   cam: {fileID: 0}
   speed: 5
+  isCaptured: 0
 --- !u!1 &2088948364
 GameObject:
   m_ObjectHideFlags: 0
