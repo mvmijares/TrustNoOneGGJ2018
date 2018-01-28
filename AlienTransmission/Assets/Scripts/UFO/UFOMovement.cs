@@ -1,6 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using InControl;
 using UnityEngine;
+
+
+
+//ALIEN
+
 
 public class UFOMovement : MonoBehaviour {
 
@@ -45,7 +51,7 @@ public class UFOMovement : MonoBehaviour {
 
         if (timeStamp <= Time.time)
         {
-
+            //add input for controller
             if (Input.GetKey(KeyCode.A) && playerCap==false)
             {
                 CastBeam();
@@ -68,7 +74,7 @@ public class UFOMovement : MonoBehaviour {
 
 
     void MoveForward()
-    {
+    {      //add input for controller
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(0, playerSpeed * Time.deltaTime, 0);
@@ -76,7 +82,7 @@ public class UFOMovement : MonoBehaviour {
     }
 
     void MoveBack()
-    {
+    {       //add input for controller
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(0, -playerSpeed * Time.deltaTime, 0);
@@ -84,12 +90,12 @@ public class UFOMovement : MonoBehaviour {
     }
 
     void Turn()
-    {
+    {      //add input for controller
         if (Input.GetKey("right")) //Right arrow key to turn right
         {
             transform.Rotate(-Vector3.forward * turnSpeed * Time.deltaTime);
         }
-
+        //add input for controller
         if (Input.GetKey("left"))//Left arrow key to turn left
         {
             transform.Rotate(Vector3.forward * turnSpeed * Time.deltaTime);

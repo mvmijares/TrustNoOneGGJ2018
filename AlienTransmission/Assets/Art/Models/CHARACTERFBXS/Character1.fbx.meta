@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 5a59b3f7bb2c0fe4dbd55ae227ff9a15
+timeCreated: 1517104508
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group1
+    100004: HumanMesh
+    100006: ikHandle1
+    100008: ikHandle2
+    100010: joint1
+    100012: joint10
+    100014: joint11
+    100016: joint12
+    100018: joint13
+    100020: joint14
+    100022: joint15
+    100024: joint16
+    100026: joint17
+    100028: joint18
+    100030: joint19
+    100032: joint2
+    100034: joint20
+    100036: joint21
+    100038: joint22
+    100040: joint23
+    100042: joint24
+    100044: joint25
+    100046: joint26
+    100048: joint27
+    100050: joint28
+    100052: joint29
+    100054: joint3
+    100056: joint4
+    100058: joint5
+    100060: joint6
+    100062: joint7
+    100064: joint8
+    100066: joint9
+    100068: locator1
+    100070: nurbsCircle1
+    100072: nurbsCircle10
+    100074: nurbsCircle11
+    100076: nurbsCircle12
+    100078: nurbsCircle13
+    100080: nurbsCircle14
+    100082: nurbsCircle15
+    100084: nurbsCircle16
+    100086: nurbsCircle17
+    100088: nurbsCircle2
+    100090: nurbsCircle3
+    100092: nurbsCircle4
+    100094: nurbsCircle5
+    100096: nurbsCircle6
+    100098: nurbsCircle7
+    100100: nurbsCircle8
+    100102: nurbsCircle9
+    100104: Spinner
+    400000: //RootNode
+    400002: group1
+    400004: HumanMesh
+    400006: ikHandle1
+    400008: ikHandle2
+    400010: joint1
+    400012: joint10
+    400014: joint11
+    400016: joint12
+    400018: joint13
+    400020: joint14
+    400022: joint15
+    400024: joint16
+    400026: joint17
+    400028: joint18
+    400030: joint19
+    400032: joint2
+    400034: joint20
+    400036: joint21
+    400038: joint22
+    400040: joint23
+    400042: joint24
+    400044: joint25
+    400046: joint26
+    400048: joint27
+    400050: joint28
+    400052: joint29
+    400054: joint3
+    400056: joint4
+    400058: joint5
+    400060: joint6
+    400062: joint7
+    400064: joint8
+    400066: joint9
+    400068: locator1
+    400070: nurbsCircle1
+    400072: nurbsCircle10
+    400074: nurbsCircle11
+    400076: nurbsCircle12
+    400078: nurbsCircle13
+    400080: nurbsCircle14
+    400082: nurbsCircle15
+    400084: nurbsCircle16
+    400086: nurbsCircle17
+    400088: nurbsCircle2
+    400090: nurbsCircle3
+    400092: nurbsCircle4
+    400094: nurbsCircle5
+    400096: nurbsCircle6
+    400098: nurbsCircle7
+    400100: nurbsCircle8
+    400102: nurbsCircle9
+    400104: Spinner
+    2100000: 'Material #95'
+    2100002: 'Material #94'
+    2100004: Shirt_shader2
+    2100006: Pants_shader2
+    2300000: Spinner
+    3300000: Spinner
+    4300000: Spinner
+    4300002: HumanMesh
+    9500000: //RootNode
+    13700000: HumanMesh
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #94'
+    second: {fileID: 2100002, guid: a22fe861a13664646a28cd5ef86546ad, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #95'
+    second: {fileID: 2100000, guid: 3afe8fa87699eab4eb78cdad872a3a34, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants_shader2
+    second: {fileID: 2100006, guid: 99511a083ee31574dbd896b2bd6154a6, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt_shader2
+    second: {fileID: 2100004, guid: 23ab9c8187df1be4f80798ddf5290255, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

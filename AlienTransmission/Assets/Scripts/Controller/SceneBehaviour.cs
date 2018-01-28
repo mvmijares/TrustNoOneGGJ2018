@@ -8,6 +8,11 @@ public class SceneBehaviour : MonoBehaviour {
     public GameObject PlayerTwoText;
     public GameObject PlayerThreeText;
 
+    public GameObject AlienPlayerJoinedText;
+    public GameObject PlayerOneJoinedText;
+    public GameObject PlayerTwoJoinedText;
+    public GameObject PlayerThreeJoinedText;
+
     [Tooltip("Alien Camera")]
     public GameObject alienCamera;
     [Tooltip("Player One Camera")]
@@ -29,8 +34,13 @@ public class SceneBehaviour : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
-	}
+
+        AlienPlayerJoinedText.SetActive(false);
+        PlayerOneJoinedText.SetActive(false);
+        PlayerTwoJoinedText.SetActive(false);
+        PlayerThreeJoinedText.SetActive(false);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -73,22 +83,28 @@ public class SceneBehaviour : MonoBehaviour {
     /// </summary>
     /// <param name="playerIndex">which player just connected</param>
     public void SetPlayerTextActive(int playerIndex) {
-  
+
+
+              
         switch (playerIndex + 1) {
             case 1: {
-                    AlienPlayerText.SetActive(true);
+                    AlienPlayerText.SetActive(false);
+                    AlienPlayerJoinedText.SetActive(true);
                     break;
                 }
             case 2: {
-                    PlayerOneText.SetActive(true);
+                    PlayerOneText.SetActive(false);
+                    PlayerOneJoinedText.SetActive(true);
                     break;
                 }
             case 3: {
-                    PlayerTwoText.SetActive(true);
+                    PlayerTwoJoinedText.SetActive(false);
+                    PlayerTwoJoinedText.SetActive(true);
                     break;
                 }
             case 4: {
-                    PlayerThreeText.SetActive(true);
+                    PlayerThreeText.SetActive(false);
+                    PlayerThreeJoinedText.SetActive(true);
                     break;
                 }
         }
