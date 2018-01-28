@@ -30,7 +30,13 @@ public abstract class HumanMindBase : MonoBehaviour {
 
     protected virtual void Awake ()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
+    }
+
+    //I don't want HumanMindBase awake to trigger first before AssignHumanMesh
+    public void giveAnimator(Animator ani)
+    {
+        anim = ani;
     }
 
     protected virtual void onIdle()

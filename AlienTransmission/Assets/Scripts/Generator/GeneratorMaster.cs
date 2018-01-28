@@ -46,7 +46,8 @@ public class GeneratorMaster : MonoBehaviour {
     public void generatorTimerFinished(GeneratorSingle finishedGenerator)
     {
         //show the generator doing its EMP stuff
-        StartCoroutine(waitForAnimToFinishAndKill(finishedGenerator));
+        //StartCoroutine(waitForAnimToFinishAndKill(finishedGenerator));
+        waitForAnimToFinishAndKill(finishedGenerator);
         finishedGenerators.Add(finishedGenerator.gameObject);
         checkIfAllGeneratorsDone();
     }
@@ -74,10 +75,21 @@ public class GeneratorMaster : MonoBehaviour {
         }
     }
 
-    IEnumerator waitForAnimToFinishAndKill(GeneratorSingle finishedGenerator)
+    void waitForAnimToFinishAndKill(GeneratorSingle finishedGenerator)
     {
-        yield return new WaitForSeconds(3); //Supposed to be however long it takes
-
-        finishedGenerator.setGenerator(false);
+        GameObject prop = finishedGenerator.gameObject.transform.Find("GeneratorProp").gameObject;
+        GameObject explosionParticle = finishedGenerator.gameObject.transform.Find("BigExplosionEffect").gameObject;
+        explosionParticle.SetActive(true);
+        new WaitForSeconds(2);
+        Destroy(prop);
+        new WaitForSeconds(3);
+        Destroy(finishedGenerator.gameObject);
     }
+
+    //IEnumerator waitForAnimToFinishAndKill(GeneratorSingle finishedGenerator)
+    //{
+    //    yield return new WaitForSeconds(3); //Supposed to be however long it takes
+
+    //    finishedGenerator.setGenerator(false);
+    //}
 }

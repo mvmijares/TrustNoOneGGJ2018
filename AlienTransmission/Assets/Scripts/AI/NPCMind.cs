@@ -82,6 +82,7 @@ public class NPCMind : HumanMindBase {
         {
             currentSpeed = 0f;
         }
+
         anim.SetFloat("Speed", currentSpeed);
         //stayStanding();
     }
