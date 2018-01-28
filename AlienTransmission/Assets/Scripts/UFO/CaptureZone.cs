@@ -10,8 +10,7 @@ using UnityEngine;
 
 public class CaptureZone : MonoBehaviour {
 
-
-
+    
     public Transform holdingPoint;
     public Transform CapturePoint;
     GameObject CapturePlayer;
@@ -25,28 +24,23 @@ public class CaptureZone : MonoBehaviour {
     public GameObject Ufo;
     UFOMovement ufoRefrence;
 
+    public bool capAttack;
+
 	
 	void Start () {
         PlayerCaptured = false;
 
         ufoRefrence = Ufo.GetComponent<UFOMovement>();
-        timeStamp = 0;
+        capAttack = ufoRefrence.cappingPlayer;
+        //timeStamp = ufoRefrence.timeStamp;
     }
 	
 	
 	void Update () {
 
+        timeStamp = ufoRefrence.timeStamp;
+        capAttack = ufoRefrence.cappingPlayer;
 
-
-        if (timeStamp <= Time.time)
-        {
-            //add input for controller<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<---------------------------------------------
-            if (Input.GetKey(KeyCode.A))
-            {
-                
-                timeStamp = Time.time + cooldownTime;
-            }
-        }
 
         if (PlayerCaptured)
         {
@@ -54,31 +48,21 @@ public class CaptureZone : MonoBehaviour {
             CapturePlayer.transform.position = Vector3.MoveTowards(CapturePlayer.transform.position, holdingPoint.position, step);
 
             CapturePlayer.transform.position = holdingPoint.transform.position;
-
-                       
+                                   
         }
-
-
-
-
+              
 
     }
 
     void OnTriggerStay(Collider other)
     {
 
-        
-
-       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>add input for controller
-        if (other.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.A) && timeStamp <=Time.time)
+         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>add input for controller
+        if (other.gameObject.tag == "Player" && Input.GetKey(KeyCode.A) && capAttack ==true)
         {
-
             CapturePlayer = other.gameObject;
-
             PlayerCaptured = true;
-            timeStamp = Time.time + cooldownTime;
-
-            print("working");
+             
             
         }
 
