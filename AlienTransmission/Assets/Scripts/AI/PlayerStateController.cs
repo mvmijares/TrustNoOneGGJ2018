@@ -120,15 +120,18 @@ public class PlayerStateController : HumanMindBase {
                 break;
             case MINDSTATES.TRANSMISSIONING:
                 //stop transmission
+                anim.SetBool("isTransmitting", false);
                 break;
             case MINDSTATES.ABDUCTED:
                 //I guess you'd be falling here and dying
+                anim.SetBool("Abducted", false);
                 break;
             case MINDSTATES.DEAD:
                 Debug.Log("Exit Dead"); //Dead people should be killed
                 break;
             case MINDSTATES.FALLING:
                 //something
+                anim.SetBool("isFalling", false);
                 break;
         }
     }

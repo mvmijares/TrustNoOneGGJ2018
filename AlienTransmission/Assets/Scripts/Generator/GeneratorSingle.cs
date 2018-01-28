@@ -48,6 +48,11 @@ public class GeneratorSingle : MonoBehaviour {
         if (collision.transform.tag == "Player")
         {
             touchingPlayers.Add(collision.transform.gameObject);
+            HumanMindBase playerState = collision.transform.gameObject.GetComponent<HumanMindBase>();
+            if (playerState != null)
+            {
+                playerState.setState(MINDSTATES.TRANSMISSIONING);
+            }
         }
     }
 
@@ -56,6 +61,11 @@ public class GeneratorSingle : MonoBehaviour {
         if (touchingPlayers.IndexOf(collision.transform.gameObject) > -1)
         {
             touchingPlayers.Remove(collision.transform.gameObject);
+            HumanMindBase playerState = collision.transform.gameObject.GetComponent<HumanMindBase>();
+            if (playerState != null)
+            {
+                playerState.setState(MINDSTATES.WALK);
+            }
         }
     }
 
