@@ -7,10 +7,13 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerManager : MonoBehaviour {
 
     public List<HumanPlayer> players;
-
+    //public GameObject ufoPrefab;
+    [SerializeField]
     List<InputDevice> inputDevices;
 
-    List<Transform> playerPositions;
+    List<Vector3> playerPositions;
+
+    
     const int maxPlayers = 3;
     [SerializeField]
     int playerIndex;
@@ -33,7 +36,16 @@ public class PlayerManager : MonoBehaviour {
     }
     void Start() {
         InputManager.OnDeviceDetached += OnDeviceDetached; // Add a listener for when device is detached during gameplay
+
+        
         players = new List<HumanPlayer>();
+        playerPositions = new List<Vector3>();
+        //Will assign at a later date
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+
         inputDevices = new List<InputDevice>();
         playerIndex = 0;
         currTimer = 0.0f;
@@ -71,9 +83,7 @@ public class PlayerManager : MonoBehaviour {
                 }
             }
         }
-        if(gameManager.currentScene == "Game") {
-            CreatePlayers();
-        }
+        
     }
     InputDevice FindPlayerWithDevice(InputDevice searchDevice) {
         int inputDeviceCount = inputDevices.Count;
@@ -88,21 +98,24 @@ public class PlayerManager : MonoBehaviour {
     void SetupNewPlayer(InputDevice inputDevice) {
         if (players.Count < maxPlayers) {
             inputDevices.Add(inputDevice);
-            Debug.Log("Called");
             gameManager.sceneManager.SetPlayerTextActive(playerIndex);
             playerIndex++;
         }
     }
     public void CreatePlayers() {
-        foreach(HumanPlayer player in players) {
-            CreateNewPlayer(player);
+        int playerIndex = 0;
+        foreach(InputDevice device in inputDevices) {
+            CreateNewPlayer(device, playerIndex);
+            playerIndex++;
         }
     }
-    void CreateNewPlayer(HumanPlayer player) {
-            if (playerPrefab) {
-                //Setting up player
-                GameObject newPlayerObject = Instantiate(playerPrefab, new Vector3(0, 0.5f, 0), playerPrefab.transform.rotation);
-                playerIndex++;
+    void CreateNewPlayer(InputDevice device, int playerIndex) {
+        if (playerPrefab) {
+            //Setting up player
+            GameObject newPlayerObject = Instantiate(playerPrefab, playerPositions[playerIndex], playerPrefab.transform.rotation);
+            HumanPlayer playerComponent = newPlayerObject.AddComponent<HumanPlayer>();
+            playerComponent.inputDevice = device;
+            playerIndex++;
         }
     }
     void OnDeviceDetached(InputDevice inputDevice) {

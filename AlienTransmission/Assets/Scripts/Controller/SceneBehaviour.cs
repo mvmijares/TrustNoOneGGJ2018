@@ -9,11 +9,16 @@ public class SceneBehaviour : MonoBehaviour {
     public GameObject PlayerTwoText;
     public GameObject PlayerThreeText;
 
-    public GameObject AlienPlayerJoinedText;
-    public GameObject PlayerOneJoinedText;
-    public GameObject PlayerTwoJoinedText;
-    public GameObject PlayerThreeJoinedText;
+    //Default Player Text
+   
 
+    //When Players have joined
+    public GameObject AlienPlayerJoined;
+    public GameObject PlayerOneJoined;
+    public GameObject PlayerTwoJoined;
+    public GameObject PlayerThreeJoined;
+
+    
     [Tooltip("Alien Camera")]
     public GameObject alienCamera;
     [Tooltip("Player One Camera")]
@@ -23,23 +28,23 @@ public class SceneBehaviour : MonoBehaviour {
     [Tooltip("Player Three Camera")]
     public GameObject playerThreeCamera;
 
+
+    GameBehaviour gameManager;
     private void Awake() {
-        if(AlienPlayerText)
-        AlienPlayerText.SetActive(false);
-        if(PlayerOneText)
-            PlayerOneText.SetActive(false);
-        if(PlayerTwoText)
-            PlayerTwoText.SetActive(false);
-        if(PlayerThreeText)
-            PlayerThreeText.SetActive(false);
+        
     }
     // Use this for initialization
     void Start () {
+        GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameManager");
+        if (gameManagerObject)
+            gameManager = gameManagerObject.GetComponent<GameBehaviour>();
 
-        AlienPlayerJoinedText.SetActive(false);
-        PlayerOneJoinedText.SetActive(false);
-        PlayerTwoJoinedText.SetActive(false);
-        PlayerThreeJoinedText.SetActive(false);
+        if (gameManager.currentScene == "SetupControllers") {
+            AlienPlayerJoined.SetActive(false);
+            PlayerOneJoined.SetActive(false);
+            PlayerTwoJoined.SetActive(false);
+            PlayerThreeJoined.SetActive(false);
+        }
 
     }
 	
@@ -84,28 +89,25 @@ public class SceneBehaviour : MonoBehaviour {
     /// </summary>
     /// <param name="playerIndex">which player just connected</param>
     public void SetPlayerTextActive(int playerIndex) {
-
-
-              
         switch (playerIndex + 1) {
             case 1: {
                     AlienPlayerText.SetActive(false);
-                    AlienPlayerJoinedText.SetActive(true);
+                    AlienPlayerJoined.SetActive(true);
                     break;
                 }
             case 2: {
                     PlayerOneText.SetActive(false);
-                    PlayerOneJoinedText.SetActive(true);
+                    PlayerOneJoined.SetActive(true);
                     break;
                 }
             case 3: {
-                    PlayerTwoJoinedText.SetActive(false);
-                    PlayerTwoJoinedText.SetActive(true);
+                    PlayerTwoText.SetActive(false);
+                    PlayerTwoJoined.SetActive(true);
                     break;
                 }
             case 4: {
                     PlayerThreeText.SetActive(false);
-                    PlayerThreeJoinedText.SetActive(true);
+                    PlayerThreeJoined.SetActive(true);
                     break;
                 }
         }

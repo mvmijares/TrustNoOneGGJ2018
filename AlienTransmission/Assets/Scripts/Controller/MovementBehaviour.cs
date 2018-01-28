@@ -11,6 +11,8 @@ public class MovementBehaviour : GenericBehaviour {
     public float sprintSpeed = 2.0f;                // Default sprint speed.
     public float speedDampTime = 0.1f;              // Default damp time to change the animations based on current speed.
 
+    [Tooltip("This is the max speed for the player")]
+    public float maxSpeed; 
     private float speed, speedSeeker;               // Moving speed.
     private int jumpBool;                           // Animator variable related to jumping.
     private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
@@ -54,8 +56,13 @@ public class MovementBehaviour : GenericBehaviour {
 
         behaviourManager.GetAnim.SetFloat(speedFloat, speed, speedDampTime, Time.deltaTime);
 
-     
-        behaviourManager.GetRigidBody.AddForce(targetDirection * Physics.gravity.magnitude * sprintSpeed * Time.deltaTime, ForceMode.Acceleration);
+        if(vertical == 0) {
+            targetDirection = Vector3.zero;
+        }
+        if (behaviourManager.GetRigidBody.velocity.magnitude > maxSpeed)
+            behaviourManager.GetRigidBody.velocity = behaviourManager.GetRigidBody.velocity.normalized * maxSpeed;
+        else
+            behaviourManager.GetRigidBody.AddForce(targetDirection * Physics.gravity.magnitude * sprintSpeed * Time.deltaTime, ForceMode.Acceleration);
     }
 
 
