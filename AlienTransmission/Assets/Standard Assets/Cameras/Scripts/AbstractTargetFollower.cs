@@ -32,7 +32,7 @@ namespace UnityStandardAssets.Cameras
         }
 
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             // we update from here if updatetype is set to Fixed, or in auto mode,
             // if the target has a rigidbody, and isn't kinematic.
