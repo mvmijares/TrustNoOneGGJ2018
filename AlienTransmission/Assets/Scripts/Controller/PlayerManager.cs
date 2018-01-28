@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour {
     List<Vector3> playerPositions;
 
     
-    const int maxPlayers = 3;
+    const int maxPlayers = 4;
     [SerializeField]
     int playerIndex;
     public GameObject playerPrefab;
@@ -64,13 +64,14 @@ public class PlayerManager : MonoBehaviour {
             if (activeInputDevice.Action1) {
                 if (FindPlayerWithDevice(activeInputDevice) == null) {
                     //Test if statement. Will change once I get 4 controllers
-                    if (playerIndex < 3) {
+                    if (playerIndex < maxPlayers) {
                         SetupNewPlayer(activeInputDevice);
                     }
-                    if (playerIndex >= 3) {
+                    if(playerIndex >= maxPlayers) {
                         maxPlayersReached = true;
                     }
                 }
+                Debug.Log(playerIndex);
             }
 
             if (maxPlayersReached) {
@@ -105,28 +106,27 @@ public class PlayerManager : MonoBehaviour {
     public void CreatePlayers(List<Vector3> playerPositions) {
         playerIndex = 0;
         foreach(InputDevice device in inputDevices) {
-            CreateNewPlayer(device, playerPositions[playerIndex]);
+            CreateNewPlayer(device, playerPositions);
             playerIndex++;
         }
     }
-    void CreateNewPlayer(InputDevice device, Vector3 position) {
+    void CreateNewPlayer(InputDevice device, List<Vector3> playerPositions) {
         if (playerPrefab) {
             //Setting up player
             if (playerIndex < 1) {
-                //Instantiate UFo
+                //Instantiate UF0
 
                 //Assign it a Human Player Component
 
                 //Add input device to it
 
                 //Add Camera to it
-            } else if(playerIndex < 4){
-                GameObject newPlayerObject = Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+            } else if(playerIndex < 4) {
+                GameObject newPlayerObject = Instantiate(playerPrefab, playerPositions[playerIndex - 1], playerPrefab.transform.rotation);
                 HumanPlayer playerComponent = newPlayerObject.GetComponent<HumanPlayer>();
 
                 switch (playerIndex) {
                     case 1: {
-                            
                             gameManager.playerOneCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
                             playerComponent.cam = gameManager.playerOneCam.GetComponent<Camera>();
                             gameManager.playerOneCam.SetActive(true);
