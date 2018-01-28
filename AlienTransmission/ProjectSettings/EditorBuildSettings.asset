@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 07c43e1d449f7d94cb256247e5412f50
+  - enabled: 1
+    path: Assets/Scenes/UFOLoseScene.unity
+    guid: ef2bf3e122aaf2a4da53d219b3b1b05f

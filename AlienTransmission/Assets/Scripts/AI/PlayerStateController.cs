@@ -45,7 +45,7 @@ public class PlayerStateController : HumanMindBase {
 
             if (yVal > 0.1f || yVal < -0.1f)
             {
-                currentSpeed = 2f;
+                currentSpeed = 4f;
             }
             else
             {
@@ -60,7 +60,7 @@ public class PlayerStateController : HumanMindBase {
     {
         //Play the animation
         //The collider will do the timer stuff in GeneratorSingle.cs
-        anim.SetBool("isTransmitting", true);
+        anim.SetBool("IsTransmitting", true);
     }
 
     protected override void onAbducted()
@@ -120,7 +120,7 @@ public class PlayerStateController : HumanMindBase {
                 break;
             case MINDSTATES.TRANSMISSIONING:
                 //stop transmission
-                anim.SetBool("isTransmitting", false);
+                anim.SetBool("IsTransmitting", false);
                 break;
             case MINDSTATES.ABDUCTED:
                 //I guess you'd be falling here and dying

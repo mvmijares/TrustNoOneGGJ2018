@@ -78,7 +78,7 @@ public class Menu : MonoBehaviour {
 
             if (Ninput.Action1.WasReleased || Input.GetKey(KeyCode.A))
             {
-
+                Application.Quit();
             }
         }
         else if (i == -1)

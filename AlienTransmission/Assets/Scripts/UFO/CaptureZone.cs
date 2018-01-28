@@ -72,10 +72,11 @@ public class CaptureZone : MonoBehaviour {
                 foreach (Collider col in colliders) {
                     if (col.gameObject.layer == LayerMask.NameToLayer("Capture")) {
                         CapturePlayer.GetComponent<HumanPlayer>().isCaptured = true;
+                        CapturePlayer.GetComponent<Collider>().enabled = false;
                         CapturePlayer.transform.position = CapturePoint.transform.position;
                         CapturePlayer = null;
                         PlayerCaptured = false;
-              
+                    
                     }
                 }
                

@@ -48,6 +48,9 @@ public class UFOMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(health <= 0) {
+            gameBehaviour.SwitchToScene("UFOLoseScene");
+        }
         xVal = player.rightHorizontal;
         yVal = player.leftVertical;
 
@@ -84,7 +87,7 @@ public class UFOMovement : MonoBehaviour {
     public void TakeDamage(int damage) {
         health -= damage;
         if(health < 0) {
-            gameBehaviour.SwitchToScene("GameOverUFO");
+            gameBehaviour.SwitchToScene("UFOLoseScene");
         }
     }
     void CastBeam()

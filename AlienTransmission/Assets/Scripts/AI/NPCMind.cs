@@ -14,9 +14,9 @@ public class NPCMind : HumanMindBase {
 
     public GameObject fleeFrom;
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         wander = GetComponent<Wander2>();
         steering = GetComponent<SteeringBasics>();
         flee = GetComponent<Flee>();

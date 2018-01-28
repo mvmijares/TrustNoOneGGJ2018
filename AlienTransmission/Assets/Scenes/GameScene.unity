@@ -3710,6 +3710,52 @@ Prefab:
       propertyPath: m_RootOrder
       value: 62
       objectReference: {fileID: 0}
+    - target: {fileID: 199900361117713222, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 698a8134f4ebbbd4e848648685f68067, type: 2}
+    - target: {fileID: 199898841808278588, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd8c234372a08af408b82538314378fe, type: 2}
+    - target: {fileID: 199621324957733092, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d7f098ed9997e714193be5e86df013f4, type: 2}
+    - target: {fileID: 199426810186240710, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f88239865da4c79468e051ceb78c0317, type: 2}
+    - target: {fileID: 199399712464944074, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 776677ab3818fb249adaca05f4e04545, type: 2}
+    - target: {fileID: 199363692036379652, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 698a8134f4ebbbd4e848648685f68067, type: 2}
+    - target: {fileID: 199238917154250192, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3eb079016c4106b41bc3f19de570f770, type: 2}
+    - target: {fileID: 198056782302251228, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 108000013609061350, guid: fa35d75604d172d48b7a6b62a07c7dbf,
+        type: 2}
+    - target: {fileID: 114558828386312590, guid: 12c35a202a083af4594dee77a8741ee7,
+        type: 2}
+      propertyPath: ufo
+      value: 
+      objectReference: {fileID: 2087679667}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12c35a202a083af4594dee77a8741ee7, type: 2}
   m_IsPrefabParent: 0
@@ -6284,6 +6330,12 @@ MonoBehaviour:
   cam: {fileID: 0}
   speed: 5
   isCaptured: 0
+--- !u!114 &2087679667 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114442984799633058, guid: 623718a0370d4004085d317664c80a7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2087679662}
+  m_Script: {fileID: 11500000, guid: 11d856e22efdc7647947e0221fbb988f, type: 3}
 --- !u!1 &2088948364
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,12 +68,14 @@ public class GeneratorMaster : MonoBehaviour {
         if (numberOfFinishedGeneratorsThisRound == generators.Count)
         {
             Debug.Log("Everything is done we win");
+            ufo.TakeDamage(1);
             //Do win stuff here
         }
         else if (numberOfFinishedGeneratorsThisRound % 3 == 0)
         {
             Debug.Log("to the next");
             //Shoot down 1 hp
+            ufo.TakeDamage(1);
             activateRandomGenerators();
         }
     }

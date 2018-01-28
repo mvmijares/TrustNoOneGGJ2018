@@ -25,12 +25,12 @@ public abstract class HumanMindBase : MonoBehaviour {
     // Use this for initialization
     //Or is Awake better?
     protected virtual void Start () {
-		currentState = MINDSTATES.IDLE;
 	}
 
     protected virtual void Awake ()
     {
         //anim = GetComponent<Animator>();
+        currentState = MINDSTATES.IDLE;
     }
 
     //I don't want HumanMindBase awake to trigger first before AssignHumanMesh
