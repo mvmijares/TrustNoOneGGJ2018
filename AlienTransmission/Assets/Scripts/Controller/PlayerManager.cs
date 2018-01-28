@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour {
             if (maxPlayersReached) {
                 currTimer += Time.deltaTime;
                 if (currTimer >= maxStartTime) {
-                    gameManager.SwitchToScene("Game");
+                    gameManager.SwitchToScene("GameScene");
                     maxPlayersReached = false;
                     currTimer = 0.0f;
                     playerIndex = 0;
@@ -102,22 +102,55 @@ public class PlayerManager : MonoBehaviour {
             playerIndex++;
         }
     }
-    public void CreatePlayers() {
-        int playerIndex = 0;
+    public void CreatePlayers(List<Vector3> playerPositions) {
+        playerIndex = 0;
         foreach(InputDevice device in inputDevices) {
-            CreateNewPlayer(device, playerIndex);
+            CreateNewPlayer(device, playerPositions[playerIndex]);
             playerIndex++;
         }
     }
-    void CreateNewPlayer(InputDevice device, int playerIndex) {
+    void CreateNewPlayer(InputDevice device, Vector3 position) {
         if (playerPrefab) {
             //Setting up player
-            GameObject newPlayerObject = Instantiate(playerPrefab, playerPositions[playerIndex], playerPrefab.transform.rotation);
-            HumanPlayer playerComponent = newPlayerObject.AddComponent<HumanPlayer>();
-            playerComponent.inputDevice = device;
-            playerIndex++;
+            if (playerIndex < 1) {
+                //Instantiate UFo
+
+                //Assign it a Human Player Component
+
+                //Add input device to it
+
+                //Add Camera to it
+            } else if(playerIndex < 4){
+                GameObject newPlayerObject = Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+                HumanPlayer playerComponent = newPlayerObject.GetComponent<HumanPlayer>();
+
+                switch (playerIndex) {
+                    case 1: {
+                            
+                            gameManager.playerOneCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerOneCam.GetComponent<Camera>();
+                            gameManager.playerOneCam.SetActive(true);
+                            break;
+                        }
+                    case 2: {
+                            gameManager.playerTwoCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerTwoCam.GetComponent<Camera>();
+                            gameManager.playerTwoCam.SetActive(true);
+                            break;
+                        }
+                    case 3: {
+                            gameManager.playerThreeCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerThreeCam.GetComponent<Camera>();
+                            gameManager.playerThreeCam.SetActive(true);
+                            break;
+                        }
+                }
+                playerComponent.inputDevice = device;
+            }
+            //Camera Set up
         }
     }
+
     void OnDeviceDetached(InputDevice inputDevice) {
         var playerCount = players.Count;
         for (int i = 0; i < playerCount; i++) {

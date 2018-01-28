@@ -47,8 +47,6 @@ public class UFOMovement : MonoBehaviour {
 
         playerCap = cz.PlayerCaptured;
 
-        print(playerCap);
-
         if (timeStamp <= Time.time)
         {
             //add input for controller

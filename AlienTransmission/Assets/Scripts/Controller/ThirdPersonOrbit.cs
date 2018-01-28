@@ -27,37 +27,46 @@ public class ThirdPersonOrbit : MonoBehaviour {
                                                                        // Use this for initialization
     public float GetHorizontalAxis { get { return angleH; } }
 
-    public HumanPlayer target;
+    HumanPlayer playerComponent;
 
 
     void Awake() {
         cam = transform;
-        cam.position = player.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
+
         cam.rotation = Quaternion.identity;
 
-        // Get camera position relative to the player, used for collision test.
-        relCameraPos = transform.position - player.position;
-        relCameraPosMag = relCameraPos.magnitude - 0.5f;
 
+       
         // Set up references and default values.
         smoothPivotOffset = pivotOffset;
         smoothCamOffset = camOffset;
         defaultFOV = cam.GetComponent<Camera>().fieldOfView;
-        angleH = player.eulerAngles.y;
 
         ResetTargetOffsets();
         ResetFOV();
         ResetMaxVerticalAngle();
     }
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        angleH += Mathf.Clamp(target.rightHorizontal, -1, 1) * 60 * horizontalAimingSpeed * Time.deltaTime;
-        angleV += Mathf.Clamp(target.rightVertical, -1, 1) * 60 * verticalAimingSpeed * Time.deltaTime;
 
+    private void OnEnable() {
+ 
+
+    }
+    void Start () {
+        playerComponent = player.GetComponent<HumanPlayer>();
+        cam.position = player.position + Quaternion.identity * pivotOffset + Quaternion.identity * camOffset;
+        // Get camera position relative to the player, used for collision test.
+        relCameraPos = transform.position - player.position;
+        relCameraPosMag = relCameraPos.magnitude - 0.5f;
+        angleH = player.eulerAngles.y;
+    }
+
+    // Update is called once per frame
+    void Update () {
+        this.enabled = true;
+        if (player) {
+            angleH += Mathf.Clamp(playerComponent.rightHorizontal, -1, 1) * 60 * horizontalAimingSpeed * Time.deltaTime;
+            angleV += Mathf.Clamp(playerComponent.rightVertical, -1, 1) * 60 * verticalAimingSpeed * Time.deltaTime;
+        }
         // Set vertical movement limit.
         angleV = Mathf.Clamp(angleV, minVerticalAngle, targetMaxVerticalAngle);
 
@@ -70,7 +79,12 @@ public class ThirdPersonOrbit : MonoBehaviour {
         cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, targetFOV, Time.deltaTime);
 
         // Test for collision with the environment based on current camera position.
-        Vector3 baseTempPosition = player.position + camYRotation * targetPivotOffset;
+        Vector3 baseTempPosition;
+        if (player)
+            baseTempPosition = player.position + camYRotation * targetPivotOffset;
+        else
+            baseTempPosition = camYRotation * targetPivotOffset;
+
         Vector3 noCollisionOffset = targetCamOffset;
         for (float zOffset = targetCamOffset.z; zOffset <= 0; zOffset += 0.5f) {
             noCollisionOffset.z = zOffset;

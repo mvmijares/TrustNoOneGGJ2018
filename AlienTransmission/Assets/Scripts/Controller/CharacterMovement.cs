@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
 
     HumanPlayer player;
-    public Transform playerCamera;                        // Reference to the camera that focus the player.
+    Transform playerCamera;                        // Reference to the camera that focus the player.
     public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
     public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
                 
@@ -48,21 +48,23 @@ public class CharacterMovement : MonoBehaviour {
     public Animator GetAnim { get { return anim; } }
 
     void Awake () {
-        behaviours = new List<GenericBehaviour>();
-        overridingBehaviours = new List<GenericBehaviour>();
-
-        anim = GetComponent<Animator>();
         hFloat = Animator.StringToHash("H");
         vFloat = Animator.StringToHash("V");
-
-        camScript = playerCamera.GetComponent<ThirdPersonOrbit>();
-        rBody = GetComponent<Rigidbody>();
         groundedBool = Animator.StringToHash("Grounded");
-        colExtents = GetComponent<Collider>().bounds.extents;
-
-
-        player = GetComponent<HumanPlayer>();
     }
+    private void Start() {
+        anim = GetComponent<Animator>();
+        player = GetComponent<HumanPlayer>();
+        playerCamera = player.cam.transform;
+        camScript = playerCamera.GetComponent<ThirdPersonOrbit>();
+        colExtents = GetComponent<Collider>().bounds.extents;
+        rBody = GetComponent<Rigidbody>();
+        
+        behaviours = new List<GenericBehaviour>();
+        overridingBehaviours = new List<GenericBehaviour>();
+    }
+
+    
 
     // Update is called once per frame
     void Update () {
