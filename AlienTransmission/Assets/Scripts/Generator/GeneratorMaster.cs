@@ -7,12 +7,14 @@ public class GeneratorMaster : MonoBehaviour {
     List<GameObject> generators;
     List<GameObject> activeGenerators;
     List<GameObject> finishedGenerators;
+    public UFOMovement ufo;
     int maxGeneratorsOutAtATime = 3;
 
 	// Use this for initialization
 	void Awake() {
         generators = new List<GameObject>();
         finishedGenerators = new List<GameObject>();
+        ufo = GameObject.FindGameObjectWithTag("UFOPlayer").gameObject.GetComponent<UFOMovement>();
 
         GameObject[] foundGens = GameObject.FindGameObjectsWithTag("Generator");
         for (int i = 0; i < foundGens.Length; i++)
@@ -71,6 +73,7 @@ public class GeneratorMaster : MonoBehaviour {
         else if (numberOfFinishedGeneratorsThisRound % 3 == 0)
         {
             Debug.Log("to the next");
+            //Shoot down 1 hp
             activateRandomGenerators();
         }
     }

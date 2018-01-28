@@ -84,7 +84,17 @@ public class GameBehaviour : MonoBehaviour {
                         playerManager.CreatePlayers(playerPositions);
                         
                     }
+
+                    GameObject[] NPCS = GameObject.FindGameObjectsWithTag("NPC");
+                    foreach (GameObject NPC in NPCS)
+                    {
+                        NPCMind npcMind = NPC.GetComponent<NPCMind>();
+                        npcMind.setState(MINDSTATES.WALK);
+                    }
+
                     break;
+
+                    
                 }
         }
     }
