@@ -6,6 +6,7 @@ public class MovementBehaviour : GenericBehaviour {
 
     HumanPlayer player;
     Transform playerCamera;
+    HumanMindBase humanState;
     public float walkSpeed = 0.15f;                 // Default walk speed.
     public float runSpeed = 1.0f;                   // Default run speed.
     public float sprintSpeed = 2.0f;                // Default sprint speed.
@@ -23,6 +24,7 @@ public class MovementBehaviour : GenericBehaviour {
 
     void Start() {
         player = GetComponent<HumanPlayer>();
+        humanState = GetComponent<HumanMindBase>();
         playerCamera = player.cam.transform;
         behaviourManager.GetAnim.SetBool(groundedBool, true);
 
@@ -59,6 +61,8 @@ public class MovementBehaviour : GenericBehaviour {
         if(vertical == 0) {
             targetDirection = Vector3.zero;
         }
+        //this is where abducted state should be
+
         if (behaviourManager.GetRigidBody.velocity.magnitude > maxSpeed)
             behaviourManager.GetRigidBody.velocity = behaviourManager.GetRigidBody.velocity.normalized * maxSpeed;
         else
