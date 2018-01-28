@@ -195,7 +195,7 @@ public class SteeringBasics : MonoBehaviour {
 
     public static float getBoundingRadius(Transform t)
     {
-        BoxCollider col = t.GetComponent<BoxCollider>();
+        Collider col = t.GetComponent<Collider>();
         return Mathf.Max(t.localScale.x, t.localScale.y, t.localScale.z) * col.bounds.size.y/2;
     }
 

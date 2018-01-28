@@ -11,9 +11,6 @@ using UnityEngine;
 public class PlayerStateController : HumanMindBase {
 
     HumanPlayer player;
-    Animator anim;
-
-    float speed = 0f;
 
     float xVal;
     float yVal;
@@ -45,9 +42,18 @@ public class PlayerStateController : HumanMindBase {
             {
                 setState(MINDSTATES.WALK);
             }
+
+            if (yVal > 0.1f || yVal < -0.1f)
+            {
+                currentSpeed = 2f;
+            }
+            else
+            {
+                currentSpeed = 0f;
+            }
         }
 
-        anim.SetFloat("Speed", speed);
+        anim.SetFloat("Speed", currentSpeed);
     }
 
     void onTransmission()

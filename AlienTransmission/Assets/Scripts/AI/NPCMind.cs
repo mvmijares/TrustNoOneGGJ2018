@@ -10,6 +10,7 @@ public class NPCMind : HumanMindBase {
     Flee flee;
     NearSensor nearSensor;
     CollisionAvoidance collision;
+    Rigidbody rigidBody;
 
     public GameObject fleeFrom;
 
@@ -21,6 +22,7 @@ public class NPCMind : HumanMindBase {
         flee = GetComponent<Flee>();
         nearSensor = GetComponentInChildren<NearSensor>();
         collision = GetComponent<CollisionAvoidance>();
+        rigidBody = GetComponent<Rigidbody>();
 
         initSpeedValues();
     }
@@ -72,6 +74,16 @@ public class NPCMind : HumanMindBase {
             steering.lookWhereYoureGoing();
         }
 
+        Debug.Log(rigidBody.velocity.magnitude);
+        if (rigidBody.velocity.magnitude > 0.5f)
+        {
+            currentSpeed = 2f;
+        }
+        else
+        {
+            currentSpeed = 0f;
+        }
+        anim.SetFloat("Speed", currentSpeed);
         //stayStanding();
     }
 
