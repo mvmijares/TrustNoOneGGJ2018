@@ -407,6 +407,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 0}
   sceneObject: {fileID: 0}
+  playerOneCam: {fileID: 0}
+  playerTwoCam: {fileID: 0}
+  playerThreeCam: {fileID: 0}
   currentScene: 
 --- !u!4 &967646740
 Transform:
@@ -826,6 +829,12 @@ Prefab:
       propertyPath: playerPrefab
       value: 
       objectReference: {fileID: 1026755652981984, guid: 6db5c8da2b0ada14b96d8f05dc7a08a6,
+        type: 2}
+    - target: {fileID: 114921422938312752, guid: a8447e3b1cc2c814b83b1d77b7142945,
+        type: 2}
+      propertyPath: ufoPrefab
+      value: 
+      objectReference: {fileID: 1468496530640052, guid: 623718a0370d4004085d317664c80a7e,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8447e3b1cc2c814b83b1d77b7142945, type: 2}

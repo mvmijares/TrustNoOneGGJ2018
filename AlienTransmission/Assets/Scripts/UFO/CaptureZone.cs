@@ -26,11 +26,12 @@ public class CaptureZone : MonoBehaviour {
 
     public bool capAttack;
 
-	
+    HumanPlayer player;
 	void Start () {
         PlayerCaptured = false;
 
         ufoRefrence = Ufo.GetComponent<UFOMovement>();
+        player = ufoRefrence.transform.GetComponent<HumanPlayer>();
         capAttack = ufoRefrence.cappingPlayer;
         //timeStamp = ufoRefrence.timeStamp;
     }
@@ -54,26 +55,32 @@ public class CaptureZone : MonoBehaviour {
 
     }
 
-    void OnTriggerStay(Collider other)
-    {
-
-         //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>add input for controller
-        if (other.gameObject.tag == "Player" && Input.GetKey(KeyCode.A) && capAttack ==true)
-        {
-            CapturePlayer = other.gameObject;
-            PlayerCaptured = true;
-             
-            
+    private void FixedUpdate() {
+        if (player.buttonA && capAttack == true && !PlayerCaptured) {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 3.0f);
+            foreach(Collider col in colliders) {
+                if(col.gameObject.layer == LayerMask.NameToLayer("Player")) {
+                    CapturePlayer = col.gameObject;
+                    PlayerCaptured = true;
+                }
+            }
         }
-
-        if (other.gameObject.tag == "DropOff" && PlayerCaptured)
-        {
-            
-            CapturePlayer.transform.position = CapturePoint.transform.position;
-            PlayerCaptured = false;
-            
-
+        if (PlayerCaptured) {
+            if (player.buttonA) {
+                Collider[] colliders = Physics.OverlapSphere(transform.position, 3.0f);
+                foreach (Collider col in colliders) {
+                    if (col.gameObject.layer == LayerMask.NameToLayer("Capture")) {
+                        CapturePlayer.transform.position = CapturePoint.transform.position;
+                        PlayerCaptured = false;
+                    }
+                }
+               
+            }
         }
-
     }
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, 3.0f);
+    }
+
+   
 }

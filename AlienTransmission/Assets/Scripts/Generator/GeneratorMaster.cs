@@ -47,6 +47,7 @@ public class GeneratorMaster : MonoBehaviour {
     {
         //show the generator doing its EMP stuff
         StartCoroutine(waitForAnimToFinishAndKill(finishedGenerator));
+        //waitForAnimToFinishAndKill(finishedGenerator);
         finishedGenerators.Add(finishedGenerator.gameObject);
         checkIfAllGeneratorsDone();
     }
@@ -73,6 +74,17 @@ public class GeneratorMaster : MonoBehaviour {
             activateRandomGenerators();
         }
     }
+
+    //void waitForAnimToFinishAndKill(GeneratorSingle finishedGenerator)
+    //{
+    //    GameObject prop = finishedGenerator.gameObject.transform.Find("GeneratorProp").gameObject;
+    //    //GameObject explosionParticle = finishedGenerator.gameObject.transform.Find("BigExplosionEffect").gameObject;
+    //    //explosionParticle.SetActive(true);
+    //    new WaitForSeconds(2);
+    //    Destroy(prop);
+    //    new WaitForSeconds(3);
+    //    finishedGenerator.setGenerator(false);
+    //}
 
     IEnumerator waitForAnimToFinishAndKill(GeneratorSingle finishedGenerator)
     {
