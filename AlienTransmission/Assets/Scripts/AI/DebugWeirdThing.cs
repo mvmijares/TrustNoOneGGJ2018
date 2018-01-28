@@ -27,7 +27,6 @@ public class DebugWeirdThing : MonoBehaviour {
                 NPCMind npc = dummyScript[i].GetComponent<NPCMind>();
                 npc.setState(MINDSTATES.WALK);
             }
-            genMaster.derpderpderp();
         }
         else
         {
