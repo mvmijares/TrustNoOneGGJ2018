@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class UFOMovement : MonoBehaviour {
 
-
     public float playerSpeed;
     public float turnSpeed;
     public GameObject Beam;
