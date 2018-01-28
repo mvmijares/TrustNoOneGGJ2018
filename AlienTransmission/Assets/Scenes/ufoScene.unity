@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &222560278 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1077613070087848, guid: df0deb4bbf69693448ab7990e79015b8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1716040872}
 --- !u!1 &380162643
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +547,16 @@ Prefab:
       propertyPath: CapturePoint
       value: 
       objectReference: {fileID: 840471779}
+    - target: {fileID: 114139458972447792, guid: df0deb4bbf69693448ab7990e79015b8,
+        type: 2}
+      propertyPath: cooldownTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114139458972447792, guid: df0deb4bbf69693448ab7990e79015b8,
+        type: 2}
+      propertyPath: Ufo
+      value: 
+      objectReference: {fileID: 222560278}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df0deb4bbf69693448ab7990e79015b8, type: 2}
   m_IsPrefabParent: 0
