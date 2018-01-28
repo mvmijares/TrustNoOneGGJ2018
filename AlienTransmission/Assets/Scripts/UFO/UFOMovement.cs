@@ -15,7 +15,7 @@ public class UFOMovement : MonoBehaviour {
     public float turnSpeed;
     public GameObject Beam;
     public float cooldownTime;
-    private float timeStamp;
+    public float timeStamp;
 
     public GameObject CaptureZoneRef;
 
@@ -24,7 +24,7 @@ public class UFOMovement : MonoBehaviour {
     public float speed;
 
     bool playerCap;
-
+    public bool cappingPlayer;
     
 
     // Use this for initialization
@@ -47,21 +47,26 @@ public class UFOMovement : MonoBehaviour {
 
         playerCap = cz.PlayerCaptured;
 
-        print(playerCap);
-
         if (timeStamp <= Time.time)
         {
             //add input for controller
             if (Input.GetKey(KeyCode.A) && playerCap==false)
             {
+                cappingPlayer = true;
                 CastBeam();
                 timeStamp = Time.time + cooldownTime;
             }
         }
 
-        if (Time.time >= timeStamp-2 && playerCap == false)
+        if (Time.time >= timeStamp - 2 && playerCap == false)
         {
             Beam.SetActive(false);
+            cappingPlayer = false;
+        }
+
+        if (playerCap == true)
+        {
+            CastBeam();
         }
 
 	}

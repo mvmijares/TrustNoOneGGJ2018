@@ -11,6 +11,12 @@ public class GameBehaviour : MonoBehaviour {
     GameObject sceneObject;
 
     public static GameBehaviour gameManager = null;
+
+    //player cameras for game scene
+    public GameObject playerOneCam;
+    public GameObject playerTwoCam;
+    public GameObject playerThreeCam;
+
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -49,9 +55,35 @@ public class GameBehaviour : MonoBehaviour {
                     }
                     break;
                 }
-            case "Game": {
-                    playerManager.CreatePlayers();
-                    CameraAssignment();
+            case "GameScene": {
+                    GameObject playerPosObjects = GameObject.FindGameObjectWithTag("PlayerPosition");
+                    GameObject[] playerOneObjects = GameObject.FindGameObjectsWithTag("PlayerOne");
+                    GameObject[] playerTwoObjects = GameObject.FindGameObjectsWithTag("PlayerTwo");
+                    GameObject[] playerThreeObjects = GameObject.FindGameObjectsWithTag("PlayerThree");
+
+                    foreach (GameObject obj in playerOneObjects)
+                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
+                            playerOneCam = obj;
+                            playerOneCam.SetActive(false);
+                        }
+                    foreach (GameObject obj in playerTwoObjects)
+                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
+                            playerTwoCam = obj;
+                            playerTwoCam.SetActive(false);
+                        }
+                    foreach (GameObject obj in playerThreeObjects)
+                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
+                            playerThreeCam = obj;
+                            playerThreeCam.SetActive(false);
+                        }
+                    if (playerPosObjects) {
+                        List<Vector3> playerPositions = new List<Vector3>();
+                        foreach (Transform child in playerPosObjects.transform) {
+                            playerPositions.Add(child.position);
+                        }
+                        playerManager.CreatePlayers(playerPositions);
+                        
+                    }
                     break;
                 }
         }
@@ -59,13 +91,6 @@ public class GameBehaviour : MonoBehaviour {
 
     public void SwitchToScene(string sceneName) {
         SceneManager.LoadScene(sceneName);
-    }
-    void CameraAssignment() {
-        Debug.Log("Camera Assignment was called");
-        if (sceneManager) {
-            //foreach (HumanPlayer player in playerManager.players)
-            //    //sceneManager.CameraAssignment(player);
-        }
     }
     private void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;

@@ -47,6 +47,11 @@ public class HumanPlayer : HumanMindBase {
             if (inputDevice != null) {
                 leftHorizontal = inputDevice.LeftStickX.Value;
                 leftVertical = inputDevice.LeftStickY.Value;
+
+                rightHorizontal = inputDevice.RightStickX.Value;
+                rightVertical = inputDevice.RightStickY.Value;
+
+                sprint = inputDevice.RightTrigger.IsPressed;
             }
         } else {
             leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;

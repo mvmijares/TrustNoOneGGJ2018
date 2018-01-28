@@ -26,7 +26,7 @@ public abstract class HumanMindBase : MonoBehaviour {
 
     protected virtual void onIdle()
     {
-        //play idle animation
+        //play idle animation   
     }
 
     protected virtual void onWalk()

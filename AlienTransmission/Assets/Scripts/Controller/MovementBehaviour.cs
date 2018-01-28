@@ -5,12 +5,14 @@ using UnityEngine;
 public class MovementBehaviour : GenericBehaviour {
 
     HumanPlayer player;
-    public Transform playerCamera;
+    Transform playerCamera;
     public float walkSpeed = 0.15f;                 // Default walk speed.
     public float runSpeed = 1.0f;                   // Default run speed.
     public float sprintSpeed = 2.0f;                // Default sprint speed.
     public float speedDampTime = 0.1f;              // Default damp time to change the animations based on current speed.
 
+    [Tooltip("This is the max speed for the player")]
+    public float maxSpeed; 
     private float speed, speedSeeker;               // Moving speed.
     private int jumpBool;                           // Animator variable related to jumping.
     private int groundedBool;                       // Animator variable related to whether or not the player is on ground.
@@ -21,7 +23,7 @@ public class MovementBehaviour : GenericBehaviour {
 
     void Start() {
         player = GetComponent<HumanPlayer>();
-
+        playerCamera = player.cam.transform;
         behaviourManager.GetAnim.SetBool(groundedBool, true);
 
         // Subscribe and register this behaviour as the default behaviour.
@@ -54,15 +56,20 @@ public class MovementBehaviour : GenericBehaviour {
 
         behaviourManager.GetAnim.SetFloat(speedFloat, speed, speedDampTime, Time.deltaTime);
 
-     
-        behaviourManager.GetRigidBody.AddForce(targetDirection * Physics.gravity.magnitude * sprintSpeed * Time.deltaTime, ForceMode.Acceleration);
+        if(vertical == 0) {
+            targetDirection = Vector3.zero;
+        }
+        if (behaviourManager.GetRigidBody.velocity.magnitude > maxSpeed)
+            behaviourManager.GetRigidBody.velocity = behaviourManager.GetRigidBody.velocity.normalized * maxSpeed;
+        else
+            behaviourManager.GetRigidBody.AddForce(targetDirection * Physics.gravity.magnitude * sprintSpeed * Time.deltaTime, ForceMode.Acceleration);
     }
 
 
     // Rotate the player to match correct orientation, according to camera and key pressed.
     Vector3 Rotating(float horizontal, float vertical) {
         // Get camera forward direction, without vertical component.
-        Vector3 forward = behaviourManager.playerCamera.TransformDirection(Vector3.forward);
+        Vector3 forward = playerCamera.TransformDirection(Vector3.forward);
 
         // Player is moving on ground, Y component of camera facing is not relevant.
         forward.y = 0.0f;

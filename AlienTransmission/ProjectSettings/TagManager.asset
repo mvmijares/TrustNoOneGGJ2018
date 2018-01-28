@@ -10,6 +10,10 @@ TagManager:
   - SceneManager
   - Generator
   - NPC
+  - PlayerPosition
+  - PlayerOne
+  - PlayerTwo
+  - PlayerThree
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Camera
   - 
   - 
   - 

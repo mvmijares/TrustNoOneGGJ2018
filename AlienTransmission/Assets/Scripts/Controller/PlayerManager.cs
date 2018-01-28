@@ -7,10 +7,13 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerManager : MonoBehaviour {
 
     public List<HumanPlayer> players;
-
+    //public GameObject ufoPrefab;
+    [SerializeField]
     List<InputDevice> inputDevices;
 
-    List<Transform> playerPositions;
+    List<Vector3> playerPositions;
+
+    
     const int maxPlayers = 3;
     [SerializeField]
     int playerIndex;
@@ -33,7 +36,16 @@ public class PlayerManager : MonoBehaviour {
     }
     void Start() {
         InputManager.OnDeviceDetached += OnDeviceDetached; // Add a listener for when device is detached during gameplay
+
+        
         players = new List<HumanPlayer>();
+        playerPositions = new List<Vector3>();
+        //Will assign at a later date
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+        playerPositions.Add(new Vector3(0, 0, 0));
+
         inputDevices = new List<InputDevice>();
         playerIndex = 0;
         currTimer = 0.0f;
@@ -64,16 +76,14 @@ public class PlayerManager : MonoBehaviour {
             if (maxPlayersReached) {
                 currTimer += Time.deltaTime;
                 if (currTimer >= maxStartTime) {
-                    gameManager.SwitchToScene("Game");
+                    gameManager.SwitchToScene("GameScene");
                     maxPlayersReached = false;
                     currTimer = 0.0f;
                     playerIndex = 0;
                 }
             }
         }
-        if(gameManager.currentScene == "Game") {
-            CreatePlayers();
-        }
+        
     }
     InputDevice FindPlayerWithDevice(InputDevice searchDevice) {
         int inputDeviceCount = inputDevices.Count;
@@ -88,23 +98,59 @@ public class PlayerManager : MonoBehaviour {
     void SetupNewPlayer(InputDevice inputDevice) {
         if (players.Count < maxPlayers) {
             inputDevices.Add(inputDevice);
-            Debug.Log("Called");
             gameManager.sceneManager.SetPlayerTextActive(playerIndex);
             playerIndex++;
         }
     }
-    public void CreatePlayers() {
-        foreach(HumanPlayer player in players) {
-            CreateNewPlayer(player);
+    public void CreatePlayers(List<Vector3> playerPositions) {
+        playerIndex = 0;
+        foreach(InputDevice device in inputDevices) {
+            CreateNewPlayer(device, playerPositions[playerIndex]);
+            playerIndex++;
         }
     }
-    void CreateNewPlayer(HumanPlayer player) {
-            if (playerPrefab) {
-                //Setting up player
-                GameObject newPlayerObject = Instantiate(playerPrefab, new Vector3(0, 0.5f, 0), playerPrefab.transform.rotation);
-                playerIndex++;
+    void CreateNewPlayer(InputDevice device, Vector3 position) {
+        if (playerPrefab) {
+            //Setting up player
+            if (playerIndex < 1) {
+                //Instantiate UFo
+
+                //Assign it a Human Player Component
+
+                //Add input device to it
+
+                //Add Camera to it
+            } else if(playerIndex < 4){
+                GameObject newPlayerObject = Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+                HumanPlayer playerComponent = newPlayerObject.GetComponent<HumanPlayer>();
+
+                switch (playerIndex) {
+                    case 1: {
+                            
+                            gameManager.playerOneCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerOneCam.GetComponent<Camera>();
+                            gameManager.playerOneCam.SetActive(true);
+                            break;
+                        }
+                    case 2: {
+                            gameManager.playerTwoCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerTwoCam.GetComponent<Camera>();
+                            gameManager.playerTwoCam.SetActive(true);
+                            break;
+                        }
+                    case 3: {
+                            gameManager.playerThreeCam.GetComponent<ThirdPersonOrbit>().player = newPlayerObject.transform;
+                            playerComponent.cam = gameManager.playerThreeCam.GetComponent<Camera>();
+                            gameManager.playerThreeCam.SetActive(true);
+                            break;
+                        }
+                }
+                playerComponent.inputDevice = device;
+            }
+            //Camera Set up
         }
     }
+
     void OnDeviceDetached(InputDevice inputDevice) {
         var playerCount = players.Count;
         for (int i = 0; i < playerCount; i++) {
