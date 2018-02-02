@@ -44,7 +44,7 @@ public class Menu : MonoBehaviour {
 
         
 
-        print(i);
+        //print(i);
 
         if (i == 1)
         {

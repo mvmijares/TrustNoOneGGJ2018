@@ -9,7 +9,7 @@ public enum Identity {
 public class HumanPlayer : MonoBehaviour {
 
     Rigidbody rb;
-    public InputDevice inputDevice { get; set; } //individual device set up in the player manager;
+    public KeyboardControllerSet inputDevice { get; set; } //individual device set up in the player manager;
     public Identity playerIdentity { get; set; }
 
     public int playerIndex; //player number
@@ -38,25 +38,35 @@ public class HumanPlayer : MonoBehaviour {
     void Update () {
         if (!debugMode) {
             if (inputDevice != null) {
-                if (!isCaptured) { 
-                    leftHorizontal = inputDevice.LeftStickX.Value;
-                    leftVertical = inputDevice.LeftStickY.Value;
-                }
-                rightHorizontal = inputDevice.RightStickX.Value;
-                rightVertical = inputDevice.RightStickY.Value;
+                //if (!isCaptured) { 
+                //    leftHorizontal = inputDevice.LeftStickX.Value;
+                //    leftVertical = inputDevice.LeftStickY.Value;
+                //}
+                //rightHorizontal = inputDevice.RightStickX.Value;
+                //rightVertical = inputDevice.RightStickY.Value;
 
-                sprint = inputDevice.RightTrigger.IsPressed;
+                //sprint = inputDevice.RightTrigger.IsPressed;
 
-                buttonA = inputDevice.Action1.IsPressed;
+                //buttonA = inputDevice.Action1.IsPressed;
             }
         } else {
-            leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;
-            leftVertical = InputManager.ActiveDevice.LeftStickY.Value;
+            //leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;
+            //leftVertical = InputManager.ActiveDevice.LeftStickY.Value;
 
-            rightHorizontal = InputManager.ActiveDevice.RightStickX.Value;
-            rightVertical = InputManager.ActiveDevice.RightStickY.Value;
+            //rightHorizontal = InputManager.ActiveDevice.RightStickX.Value;
+            //rightVertical = InputManager.ActiveDevice.RightStickY.Value;
 
-            sprint = InputManager.ActiveDevice.RightTrigger.IsPressed;
+            //sprint = InputManager.ActiveDevice.RightTrigger.IsPressed;
+
+            leftHorizontal = inputDevice.Movement.Value.x;
+            leftVertical = inputDevice.Movement.Value.y;
+
+            rightHorizontal = inputDevice.Camera.Value.x;
+            rightVertical = inputDevice.Camera.Value.y;
+
+            sprint = inputDevice.Sprint.IsPressed;
+
+            buttonA = inputDevice.Action1.IsPressed;
         }
     }
 }

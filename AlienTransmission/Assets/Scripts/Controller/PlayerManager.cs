@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour {
     public List<HumanPlayer> players;
     
     [SerializeField]
-    List<InputDevice> inputDevices;
+    List<KeyboardControllerSet> inputDevices;
 
     List<Vector3> playerPositions;
 
@@ -26,7 +26,6 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager playerManager = null;
     public static GameBehaviour gameManager = null;
 
-    
     private void Awake() {
         //Create a static instance of player Manager
         if (!playerManager) {
@@ -37,7 +36,8 @@ public class PlayerManager : MonoBehaviour {
         }
     }
     void Start() {
-        InputManager.OnDeviceDetached += OnDeviceDetached; // Add a listener for when device is detached during gameplay
+        //Don't think we need it now
+        //InputManager.OnDeviceDetached += OnDeviceDetached; // Add a listener for when device is detached during gameplay
 
         
         players = new List<HumanPlayer>();
@@ -48,7 +48,8 @@ public class PlayerManager : MonoBehaviour {
         playerPositions.Add(new Vector3(0, 0, 0));
         playerPositions.Add(new Vector3(0, 0, 0));
 
-        inputDevices = new List<InputDevice>();
+        inputDevices = new List<KeyboardControllerSet>();
+        setupInputs();
         playerIndex = 0;
         currTimer = 0.0f;
         maxStartTime = 3.0f;
@@ -59,22 +60,95 @@ public class PlayerManager : MonoBehaviour {
         //Will change this for a better setup
     }
 
+    private void setupInputs()
+    {
+        Key[] playerInput1 = new Key[] { Key.A, Key.D, Key.W, Key.S, Key.E, Key.Q };
+        Key[] playerInput2 = new Key[] { Key.H, Key.L, Key.U, Key.J, Key.I, Key.Y };
+        Key[] playerInput3 = new Key[] { Key.LeftArrow, Key.RightArrow, Key.UpArrow, Key.DownArrow, Key.End, Key.Delete };
+        Key[] playerInput4 = new Key[] { Key.Pad4, Key.Pad6, Key.Pad8, Key.Pad2, Key.Pad9, Key.Pad7 };
+        List<Key[]> playerInputs = new List<Key[]>();
+        playerInputs.Add(playerInput1);
+        playerInputs.Add(playerInput2);
+        playerInputs.Add(playerInput3);
+        playerInputs.Add(playerInput4);
+
+        foreach (Key[] playerin in playerInputs)
+        {
+            bindKeys(playerin);
+        }
+    }
+
+    void bindKeys(Key[] playerInput)
+    {
+        KeyboardControllerSet customSet = new KeyboardControllerSet();
+
+        customSet.Left.AddDefaultBinding(playerInput[0]);
+        customSet.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
+        customSet.Left.AddDefaultBinding(InputControlType.DPadLeft);
+
+        customSet.Right.AddDefaultBinding(playerInput[1]);
+        customSet.Right.AddDefaultBinding(InputControlType.LeftStickRight);
+        customSet.Right.AddDefaultBinding(InputControlType.DPadRight);
+
+        customSet.Forward.AddDefaultBinding(playerInput[2]);
+        customSet.Forward.AddDefaultBinding(InputControlType.LeftStickUp);
+        customSet.Forward.AddDefaultBinding(InputControlType.DPadUp);
+
+        customSet.Backward.AddDefaultBinding(playerInput[3]);
+        customSet.Backward.AddDefaultBinding(InputControlType.LeftStickDown);
+        customSet.Backward.AddDefaultBinding(InputControlType.DPadDown);
+
+        customSet.Sprint.AddDefaultBinding(playerInput[4]);
+        customSet.Sprint.AddDefaultBinding(InputControlType.RightTrigger);
+
+        customSet.Action1.AddDefaultBinding(playerInput[5]);
+        customSet.Action1.AddDefaultBinding(InputControlType.Action1);
+
+        customSet.Up.AddDefaultBinding(InputControlType.RightStickUp);
+        customSet.Down.AddDefaultBinding(InputControlType.RightStickDown);
+        customSet.LookLeft.AddDefaultBinding(InputControlType.RightStickLeft);
+        customSet.LookRight.AddDefaultBinding(InputControlType.RightStickRight);
+        InputManager.AttachPlayerActionSet(customSet);
+
+        inputDevices.Add(customSet);
+    }
+
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (gameManager.currentScene == "SetupControllers") {
-            InputDevice activeInputDevice = InputManager.ActiveDevice; // active device
-            if (activeInputDevice.Action1) {
-                if (FindPlayerWithDevice(activeInputDevice) == null) {
-                    //Test if statement. Will change once I get 4 controllers
-                    if (playerIndex < maxPlayers) {
-                        SetupNewPlayer(activeInputDevice);
+            //InputDevice activeInputDevice = InputManager.ActiveDevice; // active device
+            //if (activeInputDevice.AnyButtonIsPressed) {
+            //    KeyboardControllerSet set = FindPlayerWithDevice(activeInputDevice);
+            //    if (set == null) {
+            //        //Test if statement. Will change once I get 4 controllers
+            //        if (playerIndex < maxPlayers) {
+            //            SetupNewPlayer(set);
+            //        }
+            //        if(playerIndex >= maxPlayers) {
+            //            maxPlayersReached = true;
+            //        }
+            //    }
+            //    Debug.Log(playerIndex);
+            //}
+
+            foreach (KeyboardControllerSet input in inputDevices)
+            {
+                if (input.Action1.WasPressed)
+                {
+                    if (playerIndex < maxPlayers)
+                    {
+                        SetupNewPlayer(input);
                     }
-                    if(playerIndex >= maxPlayers) {
+                    if (playerIndex >= maxPlayers)
+                    {
                         maxPlayersReached = true;
                     }
+                    Debug.Log(playerIndex);
                 }
-                Debug.Log(playerIndex);
             }
+            
+
 
             if (maxPlayersReached) {
                 currTimer += Time.deltaTime;
@@ -88,31 +162,31 @@ public class PlayerManager : MonoBehaviour {
         }
         
     }
-    InputDevice FindPlayerWithDevice(InputDevice searchDevice) {
+    KeyboardControllerSet FindPlayerWithDevice(InputDevice searchDevice) {
         int inputDeviceCount = inputDevices.Count;
         for (int i = 0; i < inputDeviceCount; i++) {
-            InputDevice inputDevice = inputDevices[i];
-            if (inputDevice == searchDevice) {
+            KeyboardControllerSet inputDevice = inputDevices[i];
+            if (inputDevice.ActiveDevice == searchDevice) {
                 return inputDevice;
             }
         }
         return null;
     }
-    void SetupNewPlayer(InputDevice inputDevice) {
+    void SetupNewPlayer(KeyboardControllerSet inputDevice) {
         if (players.Count < maxPlayers) {
-            inputDevices.Add(inputDevice);
+            //inputDevices.Add(inputDevice);
             gameManager.sceneManager.SetPlayerTextActive(playerIndex);
             playerIndex++;
         }
     }
     public void CreatePlayers(List<Vector3> playerPositions) {
         playerIndex = 0;
-        foreach(InputDevice device in inputDevices) {
+        foreach (KeyboardControllerSet device in inputDevices) {
             CreateNewPlayer(device, playerPositions);
             playerIndex++;
         }
     }
-    void CreateNewPlayer(InputDevice device, List<Vector3> playerPositions) {
+    void CreateNewPlayer(KeyboardControllerSet device, List<Vector3> playerPositions) {
         if (playerPrefab) {
             //Setting up player
             if (playerIndex < 1) {
@@ -152,7 +226,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    void OnDeviceDetached(InputDevice inputDevice) {
+    void OnDeviceDetached(KeyboardControllerSet inputDevice) {
         var playerCount = players.Count;
         for (int i = 0; i < playerCount; i++) {
             HumanPlayer player = players[i];

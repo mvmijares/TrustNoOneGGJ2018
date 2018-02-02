@@ -88,7 +88,7 @@ public class GameBehaviour : MonoBehaviour {
                     GameObject[] NPCS = GameObject.FindGameObjectsWithTag("NPC");
                     foreach (GameObject NPC in NPCS)
                     {
-                        Debug.Log("npc ok");
+                        //Debug.Log("npc ok");
                         NPCMind npcMind = NPC.GetComponent<NPCMind>();
                         npcMind.setState(MINDSTATES.WALK);
                     }
