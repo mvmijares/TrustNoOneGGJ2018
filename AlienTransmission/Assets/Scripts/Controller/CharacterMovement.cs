@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour {
     private int behaviourLocked;                          // Reference to temporary locked behaviour that forbids override.
 
     private Vector3 lastDirection;                        // Last direction the player was moving.
-    private Animator anim;                                // Reference to the Animator component.
+    public Animator anim;                                // Reference to the Animator component.
     private ThirdPersonOrbit camScript;                // Reference to the third person camera script.
     private bool sprint;                                  // Boolean to determine whether or not the player activated the sprint mode.
     private bool changedFOV;                              // Boolean to store when the sprint action has changed de camera FOV.
@@ -48,8 +48,8 @@ public class CharacterMovement : MonoBehaviour {
     public Animator GetAnim { get { return anim; } }
 
     void Awake () {
-        hFloat = Animator.StringToHash("H");
-        vFloat = Animator.StringToHash("V");
+        //hFloat = Animator.StringToHash("H");
+        //vFloat = Animator.StringToHash("V");
         groundedBool = Animator.StringToHash("Grounded");
     }
     private void Start() {

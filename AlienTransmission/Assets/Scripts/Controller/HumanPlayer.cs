@@ -48,25 +48,38 @@ public class HumanPlayer : MonoBehaviour {
                 //sprint = inputDevice.RightTrigger.IsPressed;
 
                 //buttonA = inputDevice.Action1.IsPressed;
+
+
+                leftHorizontal = inputDevice.Movement.Value.x;
+                leftVertical = inputDevice.Movement.Value.y;
+
+                rightHorizontal = inputDevice.Camera.Value.x;
+                rightVertical = inputDevice.Camera.Value.y;
+
+                sprint = inputDevice.Sprint.IsPressed;
+
+                buttonA = inputDevice.Action1.IsPressed;
+
+                Debug.Log("EVERYTHING " + inputDevice.Device + " " + leftHorizontal + " " + leftVertical + " " + rightHorizontal + " " + rightVertical + " " + sprint + " " + buttonA);
             }
         } else {
-            //leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;
-            //leftVertical = InputManager.ActiveDevice.LeftStickY.Value;
+            leftHorizontal = InputManager.ActiveDevice.LeftStickX.Value;
+            leftVertical = InputManager.ActiveDevice.LeftStickY.Value;
 
-            //rightHorizontal = InputManager.ActiveDevice.RightStickX.Value;
-            //rightVertical = InputManager.ActiveDevice.RightStickY.Value;
+            rightHorizontal = InputManager.ActiveDevice.RightStickX.Value;
+            rightVertical = InputManager.ActiveDevice.RightStickY.Value;
 
-            //sprint = InputManager.ActiveDevice.RightTrigger.IsPressed;
+            sprint = InputManager.ActiveDevice.RightTrigger.IsPressed;
 
-            leftHorizontal = inputDevice.Movement.Value.x;
-            leftVertical = inputDevice.Movement.Value.y;
+            //leftHorizontal = inputDevice.Movement.Value.x;
+            //leftVertical = inputDevice.Movement.Value.y;
 
-            rightHorizontal = inputDevice.Camera.Value.x;
-            rightVertical = inputDevice.Camera.Value.y;
+            //rightHorizontal = inputDevice.Camera.Value.x;
+            //rightVertical = inputDevice.Camera.Value.y;
 
-            sprint = inputDevice.Sprint.IsPressed;
+            //sprint = inputDevice.Sprint.IsPressed;
 
-            buttonA = inputDevice.Action1.IsPressed;
+            //buttonA = inputDevice.Action1.IsPressed;
         }
     }
 }

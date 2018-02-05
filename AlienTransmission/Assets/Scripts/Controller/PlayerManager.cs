@@ -132,9 +132,13 @@ public class PlayerManager : MonoBehaviour {
             //    Debug.Log(playerIndex);
             //}
 
-            foreach (KeyboardControllerSet input in inputDevices)
+            //foreach (KeyboardControllerSet input in inputDevices)
+            //{
+            InputDevice activeInputDevice = InputManager.ActiveDevice;
+            if (activeInputDevice.AnyButtonIsPressed)
             {
-                if (input.Action1.WasPressed)
+                KeyboardControllerSet input = FindPlayerWithDevice(activeInputDevice);
+                if (input != null)
                 {
                     if (playerIndex < maxPlayers)
                     {
@@ -144,9 +148,10 @@ public class PlayerManager : MonoBehaviour {
                     {
                         maxPlayersReached = true;
                     }
-                    Debug.Log(playerIndex);
+                    //Debug.Log(playerIndex);
                 }
             }
+            //}
             
 
 
@@ -166,7 +171,7 @@ public class PlayerManager : MonoBehaviour {
         int inputDeviceCount = inputDevices.Count;
         for (int i = 0; i < inputDeviceCount; i++) {
             KeyboardControllerSet inputDevice = inputDevices[i];
-            if (inputDevice.ActiveDevice == searchDevice) {
+            if (inputDevice.ActiveDevice == searchDevice && !inputDevice.isBinded) {
                 return inputDevice;
             }
         }
@@ -175,6 +180,7 @@ public class PlayerManager : MonoBehaviour {
     void SetupNewPlayer(KeyboardControllerSet inputDevice) {
         if (players.Count < maxPlayers) {
             //inputDevices.Add(inputDevice);
+            inputDevice.isBinded = true;
             gameManager.sceneManager.SetPlayerTextActive(playerIndex);
             playerIndex++;
         }

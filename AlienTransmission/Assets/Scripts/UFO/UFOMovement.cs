@@ -51,7 +51,7 @@ public class UFOMovement : MonoBehaviour {
         if(health <= 0) {
             gameBehaviour.SwitchToScene("UFOLoseScene");
         }
-        xVal = player.rightHorizontal;
+        xVal = Mathf.Max(player.leftHorizontal, player.rightHorizontal);
         yVal = player.leftVertical;
 
         transform.Translate(0, yVal * playerSpeed * Time.deltaTime, 0);

@@ -5,6 +5,8 @@ using InControl;
 
 public class KeyboardControllerSet : PlayerActionSet {
 
+    public bool isBinded;
+
     public PlayerAction Left;
     public PlayerAction Right;
     public PlayerAction Forward;
@@ -23,6 +25,8 @@ public class KeyboardControllerSet : PlayerActionSet {
 
     public KeyboardControllerSet()
     {
+        isBinded = false;
+
         Left = CreatePlayerAction("Move Left");
         Right = CreatePlayerAction("Move Right");
         Forward = CreatePlayerAction("Move Forward");
