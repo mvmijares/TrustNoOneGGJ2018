@@ -132,13 +132,13 @@ public class PlayerManager : MonoBehaviour {
             //    Debug.Log(playerIndex);
             //}
 
-            //foreach (KeyboardControllerSet input in inputDevices)
-            //{
-            InputDevice activeInputDevice = InputManager.ActiveDevice;
-            if (activeInputDevice.AnyButtonIsPressed)
+            foreach (KeyboardControllerSet input in inputDevices)
             {
-                KeyboardControllerSet input = FindPlayerWithDevice(activeInputDevice);
-                if (input != null)
+            //InputDevice activeInputDevice = InputManager.ActiveDevice;
+            //if (activeInputDevice.AnyButtonIsPressed)
+            //{
+                //KeyboardControllerSet input = FindPlayerWithDevice(activeInputDevice);
+                if (input.Action1.wasPressed)
                 {
                     if (playerIndex < maxPlayers)
                     {
@@ -150,8 +150,8 @@ public class PlayerManager : MonoBehaviour {
                     }
                     //Debug.Log(playerIndex);
                 }
-            }
             //}
+            }
             
 
 
