@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour {
     private void setupInputs()
     {
         Key[] playerInput1 = new Key[] { Key.A, Key.D, Key.W, Key.S, Key.E, Key.Q };
-        Key[] playerInput2 = new Key[] { Key.H, Key.L, Key.U, Key.J, Key.I, Key.Y };
+        Key[] playerInput2 = new Key[] { Key.H, Key.K, Key.U, Key.J, Key.I, Key.Y };
         Key[] playerInput3 = new Key[] { Key.LeftArrow, Key.RightArrow, Key.UpArrow, Key.DownArrow, Key.End, Key.Delete };
         Key[] playerInput4 = new Key[] { Key.Pad4, Key.Pad6, Key.Pad8, Key.Pad2, Key.Pad9, Key.Pad7 };
         List<Key[]> playerInputs = new List<Key[]>();
@@ -138,7 +138,7 @@ public class PlayerManager : MonoBehaviour {
             //if (activeInputDevice.AnyButtonIsPressed)
             //{
                 //KeyboardControllerSet input = FindPlayerWithDevice(activeInputDevice);
-                if (input.Action1.wasPressed)
+                if (input.Action1.WasPressed)
                 {
                     if (playerIndex < maxPlayers)
                     {
