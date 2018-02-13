@@ -57,32 +57,21 @@ public class GameBehaviour : MonoBehaviour {
                 }
             case "GameScene": {
                     GameObject playerPosObjects = GameObject.FindGameObjectWithTag("PlayerPosition");
-                    GameObject[] playerOneObjects = GameObject.FindGameObjectsWithTag("PlayerOne");
-                    GameObject[] playerTwoObjects = GameObject.FindGameObjectsWithTag("PlayerTwo");
-                    GameObject[] playerThreeObjects = GameObject.FindGameObjectsWithTag("PlayerThree");
+                    GameObject playerOneObject = GameObject.FindGameObjectWithTag("PlayerOne");
+                    GameObject playerTwoObject = GameObject.FindGameObjectWithTag("PlayerTwo");
+                    GameObject playerThreeObject = GameObject.FindGameObjectWithTag("PlayerThree");
 
-                    foreach (GameObject obj in playerOneObjects)
-                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
-                            playerOneCam = obj;
-                            playerOneCam.SetActive(false);
-                        }
-                    foreach (GameObject obj in playerTwoObjects)
-                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
-                            playerTwoCam = obj;
-                            playerTwoCam.SetActive(false);
-                        }
-                    foreach (GameObject obj in playerThreeObjects)
-                        if (obj.layer == LayerMask.NameToLayer("Camera")) {
-                            playerThreeCam = obj;
-                            playerThreeCam.SetActive(false);
-                        }
+                   
+                    playerOneCam = playerOneObject;
+                    playerTwoCam = playerTwoObject;
+                    playerThreeCam = playerThreeObject;    
+
                     if (playerPosObjects) {
                         List<Vector3> playerPositions = new List<Vector3>();
                         foreach (Transform child in playerPosObjects.transform) {
                             playerPositions.Add(child.position);
                         }
                         playerManager.CreatePlayers(playerPositions);
-                        
                     }
 
                     GameObject[] NPCS = GameObject.FindGameObjectsWithTag("NPC");
@@ -92,14 +81,10 @@ public class GameBehaviour : MonoBehaviour {
                         NPCMind npcMind = NPC.GetComponent<NPCMind>();
                         npcMind.setState(MINDSTATES.WALK);
                     }
-
                     break;
-
-                    
                 }
-        }
+        }  
     }   
-
     public void SwitchToScene(string sceneName) {
         SceneManager.LoadScene(sceneName);
     }

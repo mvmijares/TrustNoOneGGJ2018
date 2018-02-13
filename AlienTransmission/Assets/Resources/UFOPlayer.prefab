@@ -59,6 +59,8 @@ GameObject:
   - component: {fileID: 81876002845819634}
   - component: {fileID: 114442984799633058}
   - component: {fileID: 135880536196654104}
+  - component: {fileID: 114932432829714452}
+  - component: {fileID: 114177724618703480}
   - component: {fileID: 54724877572439232}
   m_Layer: 0
   m_Name: UFOPlayer
@@ -442,6 +444,25 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114177724618703480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468496530640052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b6db3b5b7e06c44876b00500d2e97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  z: 0
+  rightAnalogHorizontal: 0
+  rightAnalogVertical: 0
+  actionKey: 0
+  keyboard: 0
+  lShift: 0
 --- !u!114 &114442984799633058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d856e22efdc7647947e0221fbb988f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
   playerSpeed: 5
   turnSpeed: 100
   Beam: {fileID: 1305005091849812}
@@ -479,6 +501,19 @@ MonoBehaviour:
   speed: 0
   Ufo: {fileID: 1468496530640052}
   capAttack: 0
+--- !u!114 &114932432829714452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468496530640052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2a753806deedf469e0beff6bc49c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsSet: 0
+  usingKeyboard: 0
 --- !u!124 &124837816463290256
 Behaviour:
   m_ObjectHideFlags: 1

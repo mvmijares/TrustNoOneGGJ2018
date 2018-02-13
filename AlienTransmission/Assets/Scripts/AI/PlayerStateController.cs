@@ -9,8 +9,7 @@ using UnityEngine;
  * For playing animation triggers, do it on HumanMindBase so it can affect NPCs too
  */
 public class PlayerStateController : HumanMindBase {
-
-    HumanPlayer player;
+    PlayerController player;
 
     float xVal;
     float yVal;
@@ -24,17 +23,18 @@ public class PlayerStateController : HumanMindBase {
     protected override void Awake()
     {
         base.Awake();
-        player = GetComponent<HumanPlayer>();
+
+        player = GetComponentInChildren<PlayerController>();
     }
 
     private void Update()
     {
         if (currentState != MINDSTATES.ABDUCTED || currentState != MINDSTATES.FALLING)
         {
-            xVal = player.leftHorizontal;
-            yVal = player.leftVertical;
+            xVal = player.x;
+            yVal = player.z;
 
-            if (player.sprint)
+            if (player.lShift)
             {
                 setState(MINDSTATES.RUN);
             }

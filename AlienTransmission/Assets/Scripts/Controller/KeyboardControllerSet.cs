@@ -6,6 +6,7 @@ using InControl;
 public class KeyboardControllerSet : PlayerActionSet {
 
     public bool isBinded;
+    public bool isKeyboard;
 
     public PlayerAction Left;
     public PlayerAction Right;
@@ -23,10 +24,12 @@ public class KeyboardControllerSet : PlayerActionSet {
     public PlayerTwoAxisAction Movement;
     public PlayerTwoAxisAction Camera;
 
-    public KeyboardControllerSet()
-    {
-        isBinded = false;
+    public PlayerAction Action2;
 
+    public KeyboardControllerSet()
+    {   
+        isBinded = false;
+        isKeyboard = true;
         Left = CreatePlayerAction("Move Left");
         Right = CreatePlayerAction("Move Right");
         Forward = CreatePlayerAction("Move Forward");
@@ -41,5 +44,7 @@ public class KeyboardControllerSet : PlayerActionSet {
         Sprint = CreatePlayerAction("Sprint");
         Camera = CreateTwoAxisPlayerAction(LookLeft, LookRight, Down, Up);
         Action1 = CreatePlayerAction("AButton");
+
+        Action2 = CreatePlayerAction("SwitchButton");
     }
 }
