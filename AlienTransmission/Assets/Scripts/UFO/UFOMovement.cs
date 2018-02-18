@@ -26,7 +26,7 @@ public class UFOMovement : MonoBehaviour {
     bool playerCap;
     public bool cappingPlayer;
 
-    HumanPlayer player;
+    PlayerController player;
 
     float xVal;
     float yVal;
@@ -35,7 +35,7 @@ public class UFOMovement : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        player = GetComponent<HumanPlayer>();
+        player = GetComponent<PlayerController>();
         cz = CaptureZoneRef.GetComponent<CaptureZone>();
 
         Beam.SetActive(false);
@@ -51,8 +51,8 @@ public class UFOMovement : MonoBehaviour {
         if(health <= 0) {
             gameBehaviour.SwitchToScene("UFOLoseScene");
         }
-        xVal = Mathf.Max(player.leftHorizontal, player.rightHorizontal);
-        yVal = player.leftVertical;
+        xVal = player.x;
+        yVal = player.z;
 
         transform.Translate(0, yVal * playerSpeed * Time.deltaTime, 0);
         transform.Rotate(-xVal * Vector3.forward * turnSpeed * Time.deltaTime);
@@ -62,7 +62,7 @@ public class UFOMovement : MonoBehaviour {
         if (timeStamp <= Time.time)
         {
             //add input for controller
-            if (player.buttonA && playerCap==false)
+            if (player.actionKey && playerCap==false)
             {
                 Debug.Log("Pressed");
                 cappingPlayer = true;

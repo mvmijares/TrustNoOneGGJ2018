@@ -31,10 +31,10 @@ public class SceneBehaviour : MonoBehaviour {
 
     GameBehaviour gameManager;
     private void Awake() {
-        
+       
     }
-    // Use this for initialization
-    void Start () {
+
+    private void Start() {
         GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameManager");
         if (gameManagerObject)
             gameManager = gameManagerObject.GetComponent<GameBehaviour>();
@@ -45,44 +45,7 @@ public class SceneBehaviour : MonoBehaviour {
             PlayerTwoJoined.SetActive(false);
             PlayerThreeJoined.SetActive(false);
         }
-
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    //Assigns players to cameras
-    //public void CameraAssignment(HumanPlayer player) {
-    //    UnityStandardAssets.Cameras.ThirdPersonCamera cameraComponent;
-    //    switch (player.playerIndex) {
-    //        case 1: {
-    //                cameraComponent = alienCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-    //                SetTargetPlayer(cameraComponent, player.transform);
-    //                break;
-    //            }
-    //        case 2: {
-    //                cameraComponent = playerOneCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-    //                SetTargetPlayer(cameraComponent, player.transform);
-    //                break;
-    //            }
-    //        case 3: {
-    //                cameraComponent = playerTwoCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-    //                SetTargetPlayer(cameraComponent, player.transform);
-    //                break;
-    //            }
-    //        case 4: {
-    //                cameraComponent = playerThreeCamera.GetComponent<UnityStandardAssets.Cameras.ThirdPersonCamera>();
-    //                SetTargetPlayer(cameraComponent, player.transform);
-    //                break;
-    //            }
-    //    }
-     
-    //}
-
-    //void SetTargetPlayer(Camera cam, Transform playerObject) {
-    //    cameraComponent.SetTarget(playerObject);
-    //}
 
     /// <summary>
     /// Sets the text active to when the player joins
@@ -91,6 +54,7 @@ public class SceneBehaviour : MonoBehaviour {
     public void SetPlayerTextActive(int playerIndex) {
         switch (playerIndex + 1) {
             case 1: {
+                    Debug.Log("Player Index is " + (playerIndex + 1));
                     AlienPlayerText.SetActive(false);
                     AlienPlayerJoined.SetActive(true);
                     break;
@@ -112,6 +76,4 @@ public class SceneBehaviour : MonoBehaviour {
                 }
         }
     }
-
-
 }
