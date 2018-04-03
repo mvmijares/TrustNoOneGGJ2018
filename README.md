@@ -10,7 +10,9 @@ The goal for the Alien is to abduct the 3 player humans and drop them in the cen
 
 
 ### There are three builds available
-`AlienThings.zip` is the build that was finished at the end of GGJ 2018. It requires 4 controllers to play
+`AlienThings.zip` is the build that was finished at the end of GGJ 2018. It requires 4 controllers to play.
+
+
 `AlienThings v.Preview1.zip` is the build that a single person can view using the keyboard or a controller. The controls are:
 - The only downside is that the camera cannot be controlled as the human players.
 ```
